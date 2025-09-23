@@ -1,1 +1,24 @@
+@import 'tailwindcss';
+@import 'flowbite/src/themes/default';
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@utility container {
+  margin-inline: auto;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+.card {
+  @apply bg-white  rounded-md overflow-hidden relative shadow-sm shadow-red-500;
+}
