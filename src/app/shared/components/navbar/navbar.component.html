@@ -3,10 +3,9 @@
     <!-- Logo -->
     <a href="index.html" class="flex items-center space-x-1 rtl:space-x-reverse">
       <img src="/images/logo_only.png" class="h-8" alt="El-Hany Shop Logo" />
-      <span
-        class="self-center text-lg font-medium whitespace-nowrap dark:text-white playfair-display"
-        >El-Hany <span class="text-red-600">Shop</span></span
-      >
+      <h1 class="self-center text-lg font-medium whitespace-nowrap dark:text-white">
+        El-Hany <span class="text-red-600">Shop</span>
+      </h1>
     </a>
 
     <div class="flex md:order-2 md:space-x-8 space-x-2">
@@ -32,7 +31,7 @@
         <input
           type="text"
           id="search-navbar"
-          class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="block w-full p-2 ps-10 text-sm text-gray-500 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search..."
         />
       </div>
@@ -100,7 +99,7 @@
         </svg>
       </button>
 
-      @if ( isLogin()) {
+      @if (isLogin()) {
       <button
         type="button"
         class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-red-300 dark:focus:ring-gray-600"
@@ -188,13 +187,13 @@
       </div>
 
       <ul
-        class="flex flex-col text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-3 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="flex flex-col font-medium text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-3 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li>
           <a
             routerLink="/home"
             routerLinkActive=" text-red-600 shadow-sm shadow-red-600 "
-            class="block w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            class="block w-full py-2 px-3 text-gray-500 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
             aria-current="page"
             >Home</a
           >
@@ -202,11 +201,11 @@
 
         <li>
           <a
-            routerLink="/products"
+            routerLink="/electrical-foundation"
             routerLinkActive=" text-red-600 shadow-sm shadow-red-600 "
             id="dropdownNavbarLink"
             data-dropdown-toggle="dropdown"
-            class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            class="flex items-center justify-between w-full py-2 px-3 text-gray-500 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
           >
             Electrical Foundation
             <svg
@@ -271,7 +270,7 @@
             routerLinkActive=" text-red-600 shadow-sm shadow-red-600 "
             id="dropdownNavbar"
             data-dropdown-toggle="dropdownLight"
-            class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            class="flex items-center justify-between w-full py-2 px-3 text-gray-500 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
           >
             Lighting
             <svg
@@ -329,7 +328,7 @@
             routerLinkActive=" text-red-600 shadow-sm shadow-red-600 "
             id="dropdown"
             data-dropdown-toggle="dropdownFrame"
-            class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            class="flex items-center justify-between w-full py-2 px-3 text-gray-500 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-1 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
           >
             Wiring Devices
             <svg
@@ -385,7 +384,7 @@
           <a
             routerLink="/contact"
             routerLinkActive=" text-red-600 shadow-sm shadow-red-600 "
-            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-600 md:p-1 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            class="block py-2 px-3 text-gray-500 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-600 md:p-1 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >Contact Us</a
           >
         </li>

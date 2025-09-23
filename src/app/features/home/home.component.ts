@@ -1,31 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CategoriesService } from './categories/categories.service';
-import { Category } from './categories/category.interface';
+import { Component } from '@angular/core';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { MainSliderComponent } from './components/main-slider/main-slider.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CategoriesComponent, MainSliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
-  private readonly categoriesService = inject(CategoriesService);
-
-  categoriesList: Category[] = [];
-
-  ngOnInit(): void {
-    this.getAllCategoriesData();
-  }
-
-  getAllCategoriesData(): void {
-    this.categoriesService.getAllCategories().subscribe({
-      next: (res) => {
-        console.log(res.data);
-        this.categoriesList = res.data;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
-}
+export class HomeComponent {}

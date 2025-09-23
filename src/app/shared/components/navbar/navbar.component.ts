@@ -11,7 +11,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   constructor(private flowbiteService: FlowbiteService) {}
-  isLogin = input<boolean>();
+  isLogin = input.required<boolean>();
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {

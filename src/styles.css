@@ -8,12 +8,16 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'SUSE Mono', sans-serif;
+}
+
+p {
+  font-family: 'Edu NSW ACT Foundation', cursive;
 }
 
 h1,
 h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Young Serif', serif;
   letter-spacing: 1px;
 }
 
