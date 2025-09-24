@@ -31,8 +31,8 @@
       free-mode="true"
       speed="500"
     >
-      @for (category of categoriesList; track category._id) {
-      <swiper-slide carouselSlide [id]="category._id">
+      @for (category of categoriesList(); track category._id) {
+      <swiper-slide>
         <div class="item hover:scale-105 transition-all duration-500 px-6 py-4">
           <a [routerLink]="['/', category.slug]">
             <img [src]="category.image" class="w-full rounded-full" [alt]="category.name" />
