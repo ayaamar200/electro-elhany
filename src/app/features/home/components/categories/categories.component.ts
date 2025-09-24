@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
@@ -10,6 +10,7 @@ import { Category } from '../../categories/category.interface';
   imports: [CarouselModule, RouterLink],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CategoriesComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
