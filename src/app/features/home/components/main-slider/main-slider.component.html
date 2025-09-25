@@ -1,28 +1,72 @@
-<section class="mb-4">
-  <!-- <owl-carousel-o [options]="mainSliderOptions">
-    <ng-template carouselSlide>
-      <img src="images/web_sliders-01_2000x550.jpg" class="w-full" alt="" />
-    </ng-template>
-    <ng-template carouselSlide>
-      <img src="images/web_sliders-02_2000x550.jpg" class="w-full" alt="" />
-    </ng-template>
-    <ng-template carouselSlide>
-      <img src="images/web_sliders-04_2000x550.jpg" class="w-full" alt="" />
-    </ng-template>
-    <ng-template carouselSlide>
-      <img src="images/web_sliders-05_2000x550.jpg" class="w-full" alt="" />
-    </ng-template>
-  </owl-carousel-o> -->
+<section>
+  <swiper-container
+    loop="true"
+    autoplay="true"
+    class="mySwiper"
+    pagination="true"
+    pagination-clickable="true"
+    free-mode="true"
+    speed="500"
+  >
+    <swiper-slide>
+      <div
+        class="slider img-1 capitalize font-medium md:text-xl text-sm text-gray-100 flex items-center"
+      >
+        <div class="md:w-1/2 mx-8">
+          <div>
+            <h2 class="py-6">cables & wires</h2>
 
-  <swiper-container loop="true" autoplay="true" pagination="true" class="mySwiper">
-    <swiper-slide>
-      <img src="images/web_sliders-01_2000x550.jpg" class="w-full" alt="" />
+            <h3 class="text-red-500 font-bold md:text-3xl text-xl">
+              Stay Connected with Confidence
+            </h3>
+            <p class="py-1 mb-4">quality cables and wires for uninterrupted power.</p>
+
+            <button class="btn mt-6">
+              <a routerLink="/electrical-foundation">shop now</a>
+            </button>
+          </div>
+        </div>
+      </div>
     </swiper-slide>
+
     <swiper-slide>
-      <img src="images/web_sliders-02_2000x550.jpg" class="w-full" alt="" />
+      <div
+        class="slider img-1 capitalize font-medium md:text-xl text-sm text-gray-100 flex items-center"
+      >
+        <div class="md:w-1/2 mx-8">
+          <div>
+            <h2 class="py-6">lighting</h2>
+
+            <h3 class="text-red-500 font-bold text-xl md:text-3xl">light up your space</h3>
+            <p class="py-1 mb-4">discover stylish lamps for every corner of your home</p>
+
+            <button class="btn mt-6">
+              <a routerLink="/electrical-foundation">shop now</a>
+            </button>
+          </div>
+        </div>
+      </div>
     </swiper-slide>
+
     <swiper-slide>
-      <img src="images/web_sliders-04_2000x550.jpg" class="w-full" alt="" />
+      <div
+        class="slider img-1 capitalize font-medium md:text-xl text-sm text-gray-100 flex items-center"
+      >
+        <div class="md:w-1/2 mx-8">
+          <div>
+            <h2 class="py-6">wiring devices</h2>
+
+            <h3 class="text-red-500 font-bold text-xl md:text-3xl">
+              Seamless Connections Effortless Style
+            </h3>
+            <p class="py-1 mb-4">Elevate Your Space with Premium Wiring Devices.</p>
+
+            <button class="btn mt-6">
+              <a routerLink="/electrical-foundation">shop now</a>
+            </button>
+          </div>
+        </div>
+      </div>
     </swiper-slide>
   </swiper-container>
 </section>

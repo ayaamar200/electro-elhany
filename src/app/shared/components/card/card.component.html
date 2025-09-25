@@ -1,16 +1,12 @@
 <div class="card item hover:scale-105 transition-all duration-500">
   <div class="card-img">
     <div>
-      <img
-        [src]="category().image"
-        class="w-full h-[200px] object-contain"
-        [alt]="category().name"
-      />
+      <!-- <img [src]="subcategory().image" class="w-full object-contain" [alt]="subcategory().name" /> -->
     </div>
   </div>
-  <div class="card-body p-4 text-center">
-    <h3 class="text-main-color text-sm font-semibold">
-      {{ category().name }}
+  <div class="card-body text-center">
+    <h3 class="text-main-color text-sm font-medium">
+      {{ subcategory().name }}
     </h3>
   </div>
 </div>

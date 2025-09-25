@@ -11,18 +11,31 @@ body {
   font-family: 'SUSE Mono', sans-serif;
 }
 
+.text-main-color {
+  @apply text-gray-900;
+}
+
 p {
   font-family: 'Edu NSW ACT Foundation', cursive;
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Young Serif', serif;
-  letter-spacing: 1px;
+  line-height: 2.5rem;
+  letter-spacing: 0.05em;
 }
 
 /* You can add global styles to this file, and also import other style files */
 
 .card {
   @apply bg-white  rounded-md overflow-hidden relative shadow-sm shadow-red-500;
+}
+
+.btn {
+  @apply cursor-pointer bg-red-500 text-white font-bold  rounded hover:bg-red-600 transition duration-300 capitalize px-3 py-2;
 }

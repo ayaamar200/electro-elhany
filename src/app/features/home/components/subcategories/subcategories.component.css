@@ -1,0 +1,20 @@
+.collection-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.387), rgba(0, 0, 0, 0.387)),
+    url('/images/outdoor-celling-lights.jpg');
+  background-size: cover;
+  background-position: top center;
+}
+
+.collection-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.387), rgba(0, 0, 0, 0.387)),
+    url('/images/decorative-lights.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.collection-3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.387), rgba(0, 0, 0, 0.387)),
+    url('/images/lamps.png');
+  background-size: cover;
+  background-position: center;
+}

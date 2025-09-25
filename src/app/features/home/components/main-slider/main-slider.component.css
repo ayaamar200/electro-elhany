@@ -1,0 +1,20 @@
+.slider {
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+}
+
+.img-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('/images/wires.jpg');
+}
+
+.img-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('/images/indoor-lights.jpg');
+}
+
+.img-3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('/images/wiring-devices.png');
+}

@@ -14,33 +14,6 @@ import { Category } from '../../categories/category.interface';
 export class CategoriesComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
 
-  // categoryOptions: OwlOptions = {
-  //   loop: true,
-  //   mouseDrag: true,
-  //   touchDrag: true,
-  //   pullDrag: false,
-  //   dots: false,
-  //   autoplay: true,
-  //   autoplayTimeout: 3000,
-  //   autoplayHoverPause: true,
-  //   navSpeed: 700,
-  //   navText: ['', ''],
-  //   responsive: {
-  //     0: {
-  //       items: 1,
-  //     },
-  //     400: {
-  //       items: 2,
-  //     },
-  //     740: {
-  //       items: 3,
-  //     },
-  //     940: {
-  //       items: 4,
-  //     },
-  //   },
-  //   nav: true,
-  // };
   categoriesList = signal<Category[]>([]);
 
   ngOnInit(): void {

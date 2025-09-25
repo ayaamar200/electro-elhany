@@ -1,0 +1,9 @@
+<section>
+  <div class="container">
+    <div class="grid md:grid-cols-4 gap-6">
+      @for (subcat of subcategoryList(); track subcat._id) {
+      <app-card [subcategory]="subcat" />
+      }
+    </div>
+  </div>
+</section>

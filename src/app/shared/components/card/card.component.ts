@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Category } from '../../../features/home/categories/category.interface';
+import { Subcategory } from '../../../core/models/subcategory.interface';
 
 @Component({
   selector: 'app-card',
@@ -8,5 +8,5 @@ import { Category } from '../../../features/home/categories/category.interface';
   styleUrl: './card.component.css',
 })
 export class CardComponent {
-  category = input.required<Category>();
+  subcategory = input.required<Subcategory>();
 }
