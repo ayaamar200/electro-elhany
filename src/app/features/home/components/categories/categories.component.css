@@ -1,0 +1,20 @@
+swiper-container::part(bullet-active) {
+  background-color: #ea3d3d;
+}
+swiper-container::part(bullet) {
+  background-color: #000;
+}
+
+swiper-container::part(bullet),
+swiper-container::part(bullet-active) {
+  width: 20px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: #ea3d3d;
+  height: 25px;
+  width: 25px;
+}

@@ -3,10 +3,11 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angu
 import { RouterLink } from '@angular/router';
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../categories/category.interface';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterLink],
+  imports: [RouterLink, CardComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

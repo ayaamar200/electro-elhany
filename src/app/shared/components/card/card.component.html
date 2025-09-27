@@ -1,12 +1,25 @@
-<div class="card item hover:scale-105 transition-all duration-500">
+<!-- <div class="card item hover:scale-101 transition-all duration-300">
   <div class="card-img">
     <div>
-      <!-- <img [src]="subcategory().image" class="w-full object-contain" [alt]="subcategory().name" /> -->
+      <img [src]="subcategory().image" class="w-full object-contain" [alt]="subcategory().name" />
     </div>
   </div>
   <div class="card-body text-center">
     <h3 class="text-main-color text-sm font-medium">
       {{ subcategory().name }}
+    </h3>
+  </div>
+</div> -->
+
+<div class="card">
+  <div class="card-img p-2">
+    <a [routerLink]="['/', category().slug]">
+      <img [src]="category().image" class="w-full object-contain" [alt]="category().name" />
+    </a>
+  </div>
+  <div class="card-body text-center">
+    <h3 class="text-sm">
+      {{ category().name }}
     </h3>
   </div>
 </div>

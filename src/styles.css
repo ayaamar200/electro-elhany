@@ -33,9 +33,9 @@ h6 {
 /* You can add global styles to this file, and also import other style files */
 
 .card {
-  @apply bg-white  rounded-md overflow-hidden relative shadow-sm shadow-red-500;
+  @apply bg-white border-b border-e shadow-sm shadow-white border-gray-300  rounded-md overflow-hidden relative p-2;
 }
 
 .btn {
-  @apply cursor-pointer bg-red-500 text-white font-bold  rounded hover:bg-red-600 transition duration-300 capitalize px-3 py-2;
+  @apply cursor-pointer bg-red-500 text-white font-medium  rounded hover:bg-red-600 transition duration-300 capitalize px-3 py-2;
 }

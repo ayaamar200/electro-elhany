@@ -1,33 +1,47 @@
-<section class="capitalize py-5">
-  <div class="container">
-    <div class="main-title">
-      <h2 class="text-xl text-red-600 font-semibold">shop by category</h2>
+<section class="category py-20 my-6 bg-gray-100">
+  <div class="container text-center max-w-7xl">
+    <div class="main-title mb-6">
+      <h2 class="text-xl md:text-2xl text-gray-900 font-medium">Product Categories</h2>
+      <p class="text-red-400">Discover a wide range of Categories</p>
     </div>
 
-    <swiper-container
+    <div class="categories grid md:grid-cols-5 md:gap-6 grid-cols-2 gap-4">
+      @for (cat of categoriesList(); track cat._id) {
+      <app-card [category]="cat" />
+      }
+    </div>
+
+    <!-- <swiper-container
       loop="true"
       autoplay="true"
       class="mySwiper"
-      pagination="true"
-      pagination-clickable="true"
-      slides-per-view="4"
-      space-between="5"
+      navigation="true"
       free-mode="true"
-      speed="500"
+      [breakpoints]="{
+      '320': {
+          slidesPerView: 3,
+        },
+        
+         '1024': {
+          slidesPerView: 5,
+        },
+        
+    }"
     >
-      @for (category of categoriesList(); track category._id) {
+      @for (cat of categoriesList(); track cat._id) {
       <swiper-slide>
         <div class="item hover:scale-105 transition-all duration-300 px-6 py-4">
-          <a [routerLink]="['/', category.slug]">
-            <img [src]="category.image" class="w-full rounded-full" [alt]="category.name" />
-
-            <h3 class="text-sm font-semibold text-main-color text-center mt-2">
-              {{ category.name }}
-            </h3>
+          <a [routerLink]="['/', cat.slug]">
+            <img [src]="cat.image" class="w-full rounded-full object-contain" [alt]="cat.name" />
           </a>
+          <h3 class="text-sm font-semibold text-main-color text-center mt-2">
+            {{ cat.name }}
+          </h3>
+
+          <app-card [category]="cat" />
         </div>
       </swiper-slide>
       }
-    </swiper-container>
+    </swiper-container> -->
   </div>
 </section>

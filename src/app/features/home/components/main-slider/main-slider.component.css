@@ -1,20 +1,59 @@
-.slider {
+/* ****************** Main Slider ****************** */
+
+swiper-container::part(bullet-active) {
+  background-color: #ea3d3d;
+}
+swiper-container::part(bullet) {
+  background-color: #fff;
+}
+
+swiper-container::part(bullet),
+swiper-container::part(bullet-active) {
+  width: 20px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: #fff;
+  height: 25px;
+  width: 25px;
+}
+.mySwiper .slider {
   background-size: cover;
   background-position: center;
-  height: 80vh;
+  height: 90vh;
 }
 
-.img-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url('/images/wires.jpg');
+.mySwiper .slider.img-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.356), rgba(0, 0, 0, 0.3356)),
+    url('/images/home.jpg');
 }
 
-.img-2 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url('/images/indoor-lights.jpg');
+.mySwiper .slider.img-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3356), rgba(0, 0, 0, 0.3356)),
+    url('/images/outdoor-wall-lights.jpg');
 }
 
-.img-3 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url('/images/wiring-devices.png');
+.mySwiper .slider.img-3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('/images/decorative-wall-lights.jpg');
+}
+
+/* ****************** Side Banners ****************** */
+.main-slider .side-banner {
+  background-size: cover;
+  background-position: center;
+  height: 44vh;
+}
+
+.main-slider .side-banner.item-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.356), rgba(0, 0, 0, 0.356)),
+    url('/images/spots-and-panels.jpg');
+}
+
+.main-slider .side-banner.item-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.356), rgba(0, 0, 0, 0.356)),
+    url('/images/led-strip.jpg');
 }
