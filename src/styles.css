@@ -11,10 +11,6 @@ body {
   font-family: 'SUSE Mono', sans-serif;
 }
 
-.text-main-color {
-  @apply text-gray-900;
-}
-
 p {
   font-family: 'Edu NSW ACT Foundation', cursive;
 }

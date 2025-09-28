@@ -23,7 +23,7 @@ swiper-container::part(button-next) {
 .mySwiper .slider {
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 80vh;
 }
 
 .mySwiper .slider.img-1 {
@@ -45,7 +45,7 @@ swiper-container::part(button-next) {
 .main-slider .side-banner {
   background-size: cover;
   background-position: center;
-  height: 44vh;
+  height: 39vh;
 }
 
 .main-slider .side-banner.item-1 {

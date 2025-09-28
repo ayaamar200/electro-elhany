@@ -5,7 +5,7 @@
       <p class="text-red-400">Discover a wide range of Categories</p>
     </div>
 
-    <div class="categories grid md:grid-cols-5 md:gap-6 grid-cols-2 gap-4">
+    <div class="categories grid md:grid-cols-4 md:gap-6 grid-cols-2 gap-4">
       @for (cat of categoriesList(); track cat._id) {
       <app-card [category]="cat" />
       }
