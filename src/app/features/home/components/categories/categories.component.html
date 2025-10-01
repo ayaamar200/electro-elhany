@@ -6,8 +6,19 @@
     </div>
 
     <div class="categories grid md:grid-cols-4 md:gap-6 grid-cols-2 gap-4">
-      @for (cat of categoriesList(); track cat._id) {
-      <app-card [category]="cat" />
+      @for (category of categoryList(); track category._id) {
+      <div class="card">
+        <div class="card-img p-2">
+          <a [routerLink]="['/', category.slug]">
+            <img [src]="category.image" class="w-full object-contain" [alt]="category.name" />
+          </a>
+        </div>
+        <div class="card-body text-center">
+          <h3 class="text-sm">
+            {{ category.name }}
+          </h3>
+        </div>
+      </div>
       }
     </div>
 

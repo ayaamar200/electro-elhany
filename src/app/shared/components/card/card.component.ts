@@ -11,5 +11,5 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent {
   // subcategory = input.required<Subcategory>();
-  category = input.required<Category>();
+  product = input.required<Category>();
 }

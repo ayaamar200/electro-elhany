@@ -1,0 +1,14 @@
+.card .card-body,
+.card button {
+  transition: all 0.5s;
+}
+
+.card button {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.card:hover button {
+  transform: translateY(0);
+  opacity: 1;
+}

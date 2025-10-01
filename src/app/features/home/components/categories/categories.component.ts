@@ -15,7 +15,7 @@ import { CardComponent } from '../../../../shared/components/card/card.component
 export class CategoriesComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
 
-  categoriesList = signal<Category[]>([]);
+  categoryList = signal<Category[]>([]);
 
   ngOnInit(): void {
     this.getAllCategoriesData();
@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
     this.categoriesService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res.data);
-        this.categoriesList.set(res.data);
+        this.categoryList.set(res.data);
       },
       error: (error) => {
         console.log(error);
