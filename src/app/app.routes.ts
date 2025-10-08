@@ -11,9 +11,11 @@ import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { WiringDevicesComponent } from './features/wiring-devices/wiring-devices.component';
-import { ElectricalFoundationComponent } from './features/electrical-foundation/electrical-foundation.component';
 import { IndoorLightsComponent } from './features/indoor-lights/indoor-lights.component';
-import { LightsComponent } from './features/lights/lights.component';
+import { ProductsComponent } from './features/products/products.component';
+import { StoreLocationsComponent } from './features/store-locations/store-locations.component';
+import { OutdoorLightsComponent } from './features/outdoor-lights/outdoor-lights.component';
+import { DecorativeLightsComponent } from './features/decorative-lights/decorative-lights.component';
 
 export const routes: Routes = [
   {
@@ -46,20 +48,22 @@ export const routes: Routes = [
         component: CartComponent,
         title: 'Cart',
       },
-      {
-        path: 'lights',
-        component: LightsComponent,
-        title: 'Lighting',
-      },
+
       {
         path: 'indoor-lights',
         component: IndoorLightsComponent,
         title: 'Indoor Lights',
       },
+
       {
-        path: 'electrical-foundation',
-        component: ElectricalFoundationComponent,
-        title: 'Electrical Foundation',
+        path: 'outdoor-lights',
+        component: OutdoorLightsComponent,
+        title: 'Outdoor Lights',
+      },
+      {
+        path: 'decorative-lights',
+        component: DecorativeLightsComponent,
+        title: 'Decorative Lights',
       },
       {
         path: 'wiring-devices',
@@ -86,8 +90,19 @@ export const routes: Routes = [
         component: CheckoutComponent,
         title: 'Checkout',
       },
+      {
+        path: 'all-products',
+        component: ProductsComponent,
+        title: 'All Products',
+      },
+      {
+        path: 'store-locations',
+        component: StoreLocationsComponent,
+        title: 'Store Locations',
+      },
     ],
   },
+
   {
     path: '**',
     component: NotfoundComponent,

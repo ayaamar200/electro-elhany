@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../../../core/services/product/product.service';
 import { Product } from '../../../../core/models/product.interface';
+import { CardComponent } from "../../../../shared/components/card/card.component";
 
 @Component({
   selector: 'app-popular-products',
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './popular-products.component.html',
   styleUrl: './popular-products.component.css',
 })

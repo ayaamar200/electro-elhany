@@ -1,11 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { SubcategoryService } from '../../../../core/services/subcategory/subcategory.service';
 import { Subcategory } from '../../../../core/models/subcategory.interface';
-import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-subcategory',
-  imports: [CardComponent],
+  imports: [],
   templateUrl: './subcategory.component.html',
   styleUrl: './subcategory.component.css',
 })
