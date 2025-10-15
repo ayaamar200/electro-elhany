@@ -1,0 +1,6 @@
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: #d0cece;
+  height: 25px;
+  width: 25px;
+}

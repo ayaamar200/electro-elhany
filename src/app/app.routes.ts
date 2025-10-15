@@ -71,7 +71,12 @@ export const routes: Routes = [
         title: 'Wiring Devices',
       },
       {
-        path: 'details',
+        path: 'details/:slug/:id',
+        component: DetailsComponent,
+        title: 'Product Details',
+      },
+       {
+        path: 'details/:id',
         component: DetailsComponent,
         title: 'Product Details',
       },

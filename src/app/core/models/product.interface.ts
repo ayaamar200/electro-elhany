@@ -9,15 +9,28 @@ export interface Product {
   imageCover: string;
   images: string[];
   category: Category;
-  subcategories: string[];
-  brand: string;
+  subcategories: Subcategory[];
+  brand: Category;
   ratingsAverage: number;
   ratingsQuantity: number;
   createdAt: string;
   updatedAt: string;
 }
 
+interface Subcategory {
+  _id: string;
+  name: string;
+  slug: string;
+  category: Category2;
+}
+
+interface Category2 {
+  _id: string;
+  name: string;
+}
+
 interface Category {
   _id: string;
   name: string;
+  slug: string;
 }

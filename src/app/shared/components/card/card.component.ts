@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
-import { Category } from '../../../features/home/components/categories/category.interface';
 import { Product } from '../../../core/models/product.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })

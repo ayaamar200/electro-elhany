@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class CategoriesService {
-  private readonly httpClient = inject(HttpClient);
-
-  getAllCategories(): Observable<any> {
+export class CategoryService {
+    private readonly httpClient = inject(HttpClient);
+ getAllCategories(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/api/v1/categories`);
   }
+
 }

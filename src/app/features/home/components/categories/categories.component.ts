@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angular/core';
 
 import { RouterLink } from '@angular/router';
-import { CategoriesService } from '../categories/category/categories.service';
-import { Category } from './category.interface';
+import { Category } from './model/category.interface';
+import { CategoryService } from './services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -12,7 +12,7 @@ import { Category } from './category.interface';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CategoriesComponent implements OnInit {
-  private readonly categoriesService = inject(CategoriesService);
+  private readonly categoriesService = inject(CategoryService);
 
   categoryList = signal<Category[]>([]);
 

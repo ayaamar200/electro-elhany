@@ -12,25 +12,14 @@
 </div> -->
 
 <!-- Product Card -->
-<div class="card  group">
-  <div class="card-img ">
-    <div>
-      <img [src]="product().imageCover" class="w-full object-contain" [alt]="product().title" />
+<div class="card group">
+  <div [routerLink]="['/details',product().slug,product()._id]" class="cursor-pointer">
+    <div class="card-img">
+      <div>
+        <img [src]="product().imageCover" class="w-full object-contain" [alt]="product().title" />
+      </div>
     </div>
-    <div
-      class="layer absolute bottom-2/3 right-2 flex flex-col justify-center items-center py-1 space-y-2 translate-x-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100"
-    >
-      <button role="button" title="Add To Wishlist" class="btn">
-        <i class="fa-regular fa-heart"></i>
-      </button>
-
-      <button title="Quick View" role="button" class="btn">
-        <i class="fa-regular fa-eye"></i>
-      </button>
-    </div>
-  </div>
-  <div class="card-body p-4">
-    <div>
+    <div class="card-body p-4">
       <h3 class="font-medium">{{ product().category.name }}</h3>
       <p class="line-clamp-1 font-light text-gray-700">
         {{ product().title }}
@@ -47,9 +36,24 @@
           </span>
         </div>
       </div>
-      <button title="Add To Cart" role="button" class="btn w-full mt-3">
-        <i class="fa-solid fa-cart-shopping"></i> Add To Cart
-      </button>
     </div>
+  </div>
+
+  <div class="p-4">
+    <button title="Add To Cart" role="button" class="btn w-full">
+      <i class="fa-solid fa-cart-shopping"></i> Add To Cart
+    </button>
+  </div>
+
+  <div
+    class="layer absolute bottom-2/3 right-2 flex flex-col justify-center items-center py-1 space-y-2 translate-x-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100"
+  >
+    <button role="button" title="Add To Wishlist" class="btn">
+      <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <button title="Quick View" role="button" class="btn">
+      <i class="fa-regular fa-eye"></i>
+    </button>
   </div>
 </div>
