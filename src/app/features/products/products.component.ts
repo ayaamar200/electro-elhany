@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { Product } from '../../core/models/product.interface';
 import { ProductService } from '../../core/services/product/product.service';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-products',

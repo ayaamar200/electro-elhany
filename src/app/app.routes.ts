@@ -1,3 +1,4 @@
+import { RenderMode } from '@angular/ssr';
 import { Routes } from '@angular/router';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { HomeComponent } from './features/home/home.component';
@@ -75,7 +76,7 @@ export const routes: Routes = [
         component: DetailsComponent,
         title: 'Product Details',
       },
-       {
+      {
         path: 'details/:id',
         component: DetailsComponent,
         title: 'Product Details',

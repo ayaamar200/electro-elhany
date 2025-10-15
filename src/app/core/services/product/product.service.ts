@@ -13,5 +13,8 @@ export class ProductService {
     return this.httpClient.get(`${environment.baseUrl}/api/v1/products?page=${pageNumber}`);
   }
 
-  
+  getAllProductsOnCategory(id: string): Observable<any> {
+    // Products On Category
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/categories/${id}/products`);
+  }
 }
