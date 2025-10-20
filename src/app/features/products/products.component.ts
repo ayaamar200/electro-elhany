@@ -14,9 +14,9 @@ export class ProductsComponent implements OnInit {
   private readonly productService = inject(ProductService);
 
   productList = signal<Product[]>([]);
-  pageSize = signal(10);
-  p = signal(1);
-  total = signal(100);
+  pageSize!:number
+  p!:number
+  total!:number
 
   ngOnInit(): void {
     this.getAllProductsData();
@@ -27,9 +27,11 @@ export class ProductsComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.productList.set(res.data);
-        this.total.set(res.results);
-        this.pageSize.set(res.paginationResult.limit);
-        this.p.set(res.paginationResult.currentPage);
+         this.pageSize=res.metaData.limit;
+          this.p=res.metaData.currentPage;
+        this.total=res.results;
+       
+       
       },
       error: (error) => {
         console.log(error);
