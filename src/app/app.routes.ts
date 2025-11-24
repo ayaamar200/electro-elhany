@@ -17,12 +17,25 @@ import { ProductsComponent } from './features/products/products.component';
 import { StoreLocationsComponent } from './features/store-locations/store-locations.component';
 import { OutdoorLightsComponent } from './features/outdoor-lights/outdoor-lights.component';
 import { DecorativeLightsComponent } from './features/decorative-lights/decorative-lights.component';
+import { authGuard } from './core/guards/auth-guard';
+import { isloggedGuard } from './core/guards/islogged-guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
+
     children: [
+      {
+        path: '',
+        component: HomeComponent,
+        title: 'Electro El-Hany',
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        title: 'Electro El-Hany',
+      },
       {
         path: 'login',
         component: LoginComponent,
@@ -38,16 +51,13 @@ export const routes: Routes = [
   {
     path: '',
     component: BlankLayoutComponent,
+
     children: [
-      {
-        path: 'home',
-        component: HomeComponent,
-        title: 'Electro Elhany',
-      },
       {
         path: 'cart',
         component: CartComponent,
         title: 'Cart',
+        canActivate: [authGuard],
       },
 
       {
@@ -95,6 +105,7 @@ export const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         title: 'Checkout',
+        canActivate: [authGuard],
       },
       {
         path: 'all-products',

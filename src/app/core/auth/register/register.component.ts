@@ -1,5 +1,5 @@
 import { register } from 'swiper/element/bundle';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { FlowbiteService } from '../../services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import {
@@ -15,7 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { Subscription } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
-  private readonly cookieService = inject(CookieService);
+  private readonly platformId = inject(PLATFORM_ID);
 
   msgError = signal<string>('');
   msgSuccess = signal<string>('');
@@ -132,9 +132,11 @@ export class RegisterComponent implements OnInit {
           if (res.status === 'success') {
             this.msgSuccess.set('Successfully registered!');
             // save token to local storage
-            this.cookieService.set('token', res.token || '');
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('token', res.token);
+            }
             setTimeout(() => {
-              this.router.navigate(['home']);
+              this.router.navigate(['/home']);
             }, 800);
           }
         },

@@ -1,5 +1,4 @@
-import { CookieService } from 'ngx-cookie-service';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -13,6 +12,7 @@ import { FlowbiteService } from '../../services/flowbite/flowbite.service';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { InputComponent } from '../../../shared/components/input/input.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent {
   isLoading: boolean = false;
   flag: boolean = true;
 
-  private readonly cookieService = inject(CookieService);
+  private readonly platformId = inject(PLATFORM_ID);
 
   // loginForm: FormGroup = new FormGroup({
   //   email: new FormControl(null, [
@@ -101,9 +101,11 @@ export class LoginComponent {
             this.msgSuccess.set('Successfully Login!');
 
             // save token to local storage
-            this.cookieService.set('token', res.token || '');
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('token', res.token);
+            }
             setTimeout(() => {
-              this.router.navigate(['home']);
+              this.router.navigate(['/home']);
             }, 800);
           }
         },
