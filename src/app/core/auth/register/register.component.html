@@ -8,23 +8,35 @@
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="submit()" class="main-form">
       <!-- User Name -->
-      <div class="mb-5">
+
+      <app-input
+        [control]="registerForm.get('username')"
+        [inputType]="'text'"
+        [inputId]="'username'"
+        [placeholder]="'your username'"
+        [label]="'Your Name'"
+      >
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let nameControl = registerForm.get('username');
         <label for="username" class="main-label">Your Name</label>
         <input
           formControlName="username"
-          type="text"
+          inputType="text"
           id="username"
+          [class]="{'border-b-red-500': nameControl?.invalid && (nameControl?.dirty || nameControl?.touched),
+            'border-b-green-500': nameControl?.valid,
+          }"
           class="main-input"
           placeholder="your username"
           required
         />
-        @let nameControl = registerForm.get('username'); @if( nameControl?.errors &&
-        (nameControl?.dirty || nameControl?.touched)) {
+        @if( nameControl?.errors && (nameControl?.dirty || nameControl?.touched)) {
         <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
           <span class="sr-only">Danger</span>
 
           <ul class="list-disc list-inside">
-            <!-- Error User Name Validators  -->
             @if (nameControl?.getError('required')) {
             <li>User Name is required</li>
             } @else if (nameControl?.getError('minlength')) {
@@ -35,25 +47,38 @@
           </ul>
         </div>
         }
-      </div>
+      </div> -->
       <!-- Email Address -->
-      <div class="mb-5">
+
+      <app-input
+        [control]="registerForm.get('email')"
+        [inputType]="'email'"
+        [inputId]="'email'"
+        [placeholder]="'username@gmail.com'"
+        [label]="'Your Email'"
+      >
+        Email must end with a valid domain (e.g., .com, .net, .org)
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let emailControl = registerForm.get('email');
         <label for="email" class="main-label">Your email</label>
         <input
           formControlName="email"
-          type="email"
+          inputType="email"
           id="email"
+          [class]="{'border-b-red-500': emailControl?.invalid && (emailControl?.dirty || emailControl?.touched),
+            'border-b-green-500': emailControl?.valid,
+          }"
           class="main-input"
           placeholder="username@gmail.com"
           required
         />
 
-        @let emailControl = registerForm.get('email'); @if( emailControl?.errors &&
-        (emailControl?.dirty || emailControl?.touched)) {
+        @if( emailControl?.errors && (emailControl?.dirty || emailControl?.touched)) {
         <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
           <span class="sr-only">Danger</span>
           <ul class="list-disc list-inside">
-            <!-- Error Emails Validators  -->
             @if (emailControl?.getError('required')) {
             <li>Email is required</li>
             } @else if (emailControl?.getError('email')) {
@@ -64,24 +89,37 @@
           </ul>
         </div>
         }
-      </div>
+      </div> -->
       <!-- Phone Number -->
-      <div class="mb-5">
+      <app-input
+        [control]="registerForm.get('phone')"
+        [inputType]="'tel'"
+        [inputId]="'phone'"
+        [placeholder]="'your phone number'"
+        [label]="'Your Phone'"
+      >
+        Invalid phone number format. Accepts local or international (e.g., +201001234567 or
+        01012345678)
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let phoneControl = registerForm.get('phone');
         <label for="phone" class="main-label">Your Phone</label>
         <input
           formControlName="phone"
-          type="tel"
+          inputType="tel"
           id="phone"
+          [class]="{'border-b-red-500': phoneControl?.invalid && (phoneControl?.dirty || phoneControl?.touched),
+            'border-b-green-500': phoneControl?.valid,
+          }"
           class="main-input"
           placeholder="01012345678"
           required
         />
-        @let phoneControl = registerForm.get('phone'); @if( phoneControl?.errors &&
-        (phoneControl?.dirty || phoneControl?.touched)) {
+        @if( phoneControl?.errors && (phoneControl?.dirty || phoneControl?.touched)) {
         <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
           <span class="sr-only">Danger</span>
           <ul class="list-disc list-inside">
-            <!-- Error Phones Validators  -->
             @if (phoneControl?.getError('required')) {
             <li>Phone Number is required</li>
             } @else if (phoneControl?.getError('pattern')) {
@@ -93,25 +131,51 @@
           </ul>
         </div>
         }
-      </div>
+      </div> -->
       <!-- Password -->
-      <div class="mb-5">
-        <label for="password" class="main-label">Your password</label>
-        <input
-          formControlName="password"
-          type="password"
-          id="password"
-          class="main-input"
-          placeholder="******"
-          required
-        />
+      <app-input
+        [control]="registerForm.get('password')"
+        [inputId]="'password'"
+        [placeholder]="'********'"
+        [label]="'Your Password'"
+      >
+        Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
+        symbol
+      </app-input>
 
-        @let passControl = registerForm.get('password'); @if( passControl?.errors &&
-        (passControl?.dirty || passControl?.touched)) {
+      <!-- <div class="mb-5">
+        @let passControl = registerForm.get('password');
+        <label for="password" class="main-label">Your password</label>
+
+        <div class="relative">
+          <input
+            formControlName="password"
+            [inputType]="flag ? 'password' : 'text'"
+            id="password"
+            [class]="{'border-b-red-500': passControl?.invalid && (passControl?.dirty || passControl?.touched),
+            'border-b-green-500': passControl?.valid,
+          }"
+            class="main-input"
+            placeholder="******"
+            required
+          />
+          <span
+            (click)="flag = !flag"
+            class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
+          >
+            @if(flag) {
+            <i class="fa-regular fa-eye"></i>
+
+            } @else {
+            <i class="fa-regular fa-eye-slash"></i>
+            }
+          </span>
+        </div>
+
+        @if( passControl?.errors && (passControl?.dirty || passControl?.touched)) {
         <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
           <span class="sr-only">Danger</span>
           <ul class="list-disc list-inside">
-            <!-- Password Error Validators  -->
             @if (passControl?.getError('required')) {
             <li>Password is required</li>
             } @else if (passControl?.getError('pattern')) {
@@ -123,35 +187,47 @@
           </ul>
         </div>
         }
-      </div>
+      </div> -->
+
       <!-- Repeat Password -->
-      <div class="mb-5">
+
+      <app-input
+        [control]="registerForm.get('rePassword')"
+        [inputId]="'rePassword'"
+        [placeholder]="'********'"
+        [label]="'Repeat Password'"
+      >
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let rePassControl = registerForm.get('rePassword');
         <label for="rePassword" class="main-label">Repeat password</label>
         <input
           formControlName="rePassword"
-          type="password"
+          inputType="password"
           id="rePassword"
+          [class]="{'border-b-red-500': rePassControl?.invalid && (rePassControl?.dirty || rePassControl?.touched),
+            'border-b-green-500': rePassControl?.valid,
+          }"
           class="main-input"
           placeholder="******"
           required
         />
 
-        @let rePassControl = registerForm.get('rePassword'); @if(registerForm.getError('mismatch')
-        && (rePassControl?.dirty || rePassControl?.touched)) {
+        @if(registerForm.getError('mismatch') && (rePassControl?.dirty || rePassControl?.touched)) {
         <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
           <span class="sr-only">Danger</span>
           <ul class="list-disc list-inside">
-            <!-- RePassword Error Validators  -->
             <li>Passwords do not match</li>
           </ul>
         </div>
         }
-      </div>
+      </div> -->
       <!-- <div class="flex items-start mb-5">
         <div class="flex items-center h-5">
           <input
             id="terms"
-            type="checkbox"
+            inputType="checkbox"
             value=""
             class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300"
             required
@@ -163,7 +239,11 @@
         >
       </div> -->
 
-      <button [disabled]="registerForm.invalid" class="btn w-full mt-1">Sign Up</button>
+      <button class="btn w-full mt-1">
+        Sign Up @if(isLoading) {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
 
       <p class="py-1 text-center">
         Already have an account?
@@ -176,89 +256,21 @@
         class="flex items-center p-2 mt-4 rounded-lg bg-gray-800 text-red-400 border-t-4 border-red-800"
         role="alert"
       >
-        <!-- <svg
-          class="shrink-0 w-4 h-4"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-          />
-        </svg> -->
         <span class="sr-only">Info</span>
         <div class="ms-3 text-sm font-medium">
           <p class="font-medium">{{ msgError() }}</p>
         </div>
-        <button
-          type="button"
-          class="ms-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 inline-flex items-center justify-center h-8 w-8 bg-gray-800 text-red-400 hover:bg-gray-700"
-          data-dismiss-target="#errorAlert"
-          aria-label="Close"
-        >
-          <span class="sr-only">Close</span>
-          <svg
-            class="w-3 h-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-        </button>
       </div>
       } @else if(msgSuccess()) {
       <div
-        id="errorAlert"
+        id="successAlert"
         class="flex items-center p-2 mt-4 rounded-lg bg-gray-800 text-green-400 border-t-4 border-green-800"
         role="alert"
       >
-        <!-- <svg
-          class="shrink-0 w-4 h-4"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-          />
-        </svg> -->
         <span class="sr-only">Info</span>
         <div class="ms-3 text-sm font-medium">
           <p class="font-medium">{{ msgSuccess() }}</p>
         </div>
-        <button
-          type="button"
-          class="ms-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 inline-flex items-center justify-center h-8 w-8 bg-gray-800 text-green-400 hover:bg-gray-700"
-          data-dismiss-target="#errorAlert"
-          aria-label="Close"
-        >
-          <span class="sr-only">Close</span>
-          <svg
-            class="w-3 h-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-        </button>
       </div>
       }
     </form>

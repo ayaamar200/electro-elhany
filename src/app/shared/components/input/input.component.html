@@ -1,0 +1,65 @@
+<!-- User Name -->
+<div class="mb-5">
+  <label [for]="inputId" class="main-label">{{ label }}</label>
+
+  <div class="relative">
+    <input
+      [formControl]="control"
+      [type]="inputType || (flag ? 'password' : 'text')"
+      [id]="inputId"
+      [class]="{'border-b-red-500': control?.invalid && (control?.dirty || control?.touched),
+            'border-b-green-500': control?.valid,
+          }"
+      class="main-input"
+      [placeholder]="placeholder"
+      required
+    />
+    @if ( inputId === "password" || inputId === "rePassword") {
+    <span
+      (click)="flag = !flag"
+      class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
+    >
+      @if(flag) {
+      <i class="fa-regular fa-eye"></i>
+
+      } @else {
+      <i class="fa-regular fa-eye-slash"></i>
+      }
+    </span>
+
+    }
+  </div>
+  @if( control?.errors && (control?.dirty || control?.touched)) {
+  <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
+    <span class="sr-only">Danger</span>
+
+    <ul class="list-disc list-inside">
+      <!-- Error User Name Validators  -->
+      @if (control?.hasError('required')) {
+      <li>Input is required</li>
+      } @else if (control?.hasError('minlength')) {
+      <li>Input must be at least 3 characters</li>
+      } @else if (control?.hasError('maxlength')) {
+      <li>Input must be at most 32 characters</li>
+      } @else if (control?.hasError('email')) {
+      <li>Enter a valid email address</li>
+      } @else if (control?.hasError('pattern')) {
+      <li><ng-content /></li>
+      <!-- <li>Email must end with a valid domain (e.g., .com, .net, .org)</li> -->
+      } @else if (control?.hasError('mismatch')) {
+      <li>Passwords do not match</li>
+      <!-- <li>Email must end with a valid domain (e.g., .com, .net, .org)</li> -->
+      }
+      <!-- <li>
+        Invalid phone number format. Accepts local or international (e.g., +201001234567 or
+        01012345678)
+      </li>
+      <li>
+        Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
+        symbol
+      </li>
+      <li>Passwords do not match</li> -->
+    </ul>
+  </div>
+  }
+</div>

@@ -1,1 +1,158 @@
-<p>login works!</p>
+<section class="my-5">
+  <div
+    class="container max-w-xl bg-gray-100 mx-auto mt-5 border border-gray-200 p-6 shadow-md rounded-md"
+  >
+    <div class="main-title text-center capitalize py-4">
+      <h2 class="text-2xl text-gray-900 font-medium">Login</h2>
+      <p class="text-red-400">Sign in to your account</p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="main-form">
+      <!-- Email Address -->
+      <app-input
+        [control]="loginForm.get('email')"
+        [inputType]="'email'"
+        [inputId]="'email'"
+        [placeholder]="'username@gmail.com'"
+        [label]="'Your Email'"
+      >
+        Email must end with a valid domain (e.g., .com, .net, .org)
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let emailControl = loginForm.get('email');
+        <label for="email" class="main-label">Your email</label>
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          [class]="{'border-b-red-500': emailControl?.invalid && (emailControl?.dirty || emailControl?.touched),
+            'border-b-green-500': emailControl?.valid,
+          }"
+          class="main-input"
+          placeholder="username@gmail.com"
+          required
+        />
+
+        @if( emailControl?.errors && (emailControl?.dirty || emailControl?.touched)) {
+        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
+          <span class="sr-only">Danger</span>
+          <ul class="list-disc list-inside">
+            @if (emailControl?.getError('required')) {
+            <li>Email is required</li>
+            } @else if (emailControl?.getError('email')) {
+            <li>Enter a valid email address</li>
+            } @else if (emailControl?.getError('pattern')) {
+            <li>Email must end with a valid domain (e.g., .com, .net, .org)</li>
+            }
+          </ul>
+        </div>
+        }
+      </div> -->
+
+      <!-- Password -->
+
+      <app-input
+        [control]="loginForm.get('password')"
+        [inputId]="'password'"
+        [placeholder]="'********'"
+        [label]="'Your Password'"
+      >
+        Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
+        symbol
+      </app-input>
+
+      <!-- <div class="mb-5">
+        @let passControl = loginForm.get('password');
+        <label for="password" class="main-label">Your password</label>
+        <div class="relative">
+          <input
+            formControlName="password"
+            [type]="flag ? 'password' : 'text'"
+            id="password"
+            [class]="{'border-b-red-500': passControl?.invalid && (passControl?.dirty || passControl?.touched),
+            'border-b-green-500': passControl?.valid,
+          }"
+            class="main-input"
+            placeholder="******"
+            required
+          />
+          <span
+            (click)="flag = !flag"
+            class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
+          >
+            @if(flag) {
+            <i class="fa-regular fa-eye"></i>
+
+            } @else {
+            <i class="fa-regular fa-eye-slash"></i>
+            }
+          </span>
+        </div>
+
+        @if( passControl?.errors && (passControl?.dirty || passControl?.touched)) {
+        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
+          <span class="sr-only">Danger</span>
+          <ul class="list-disc list-inside">
+            @if (passControl?.getError('required')) {
+            <li>Password is required</li>
+            } @else if (passControl?.getError('pattern')) {
+            <li>
+              Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
+              symbol
+            </li>
+            }
+          </ul>
+        </div>
+        }
+      </div> -->
+
+      <button class="btn w-full my-2">
+        Sign Up @if(isLoading) {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+
+      <div class="flex justify-between items-center">
+        <p>
+          <a
+            routerLink="/forget-password"
+            class="text-red-600 text-sm hover:underline transition-all duration-300"
+            >Forget Password?</a
+          >
+        </p>
+        <p>
+          Don't have an Account?
+          <a
+            routerLink="/register"
+            class="text-red-600 text-sm hover:underline transition-all duration-300"
+            >Register</a
+          >
+        </p>
+      </div>
+
+      @if(msgError()) {
+      <div
+        id="errorAlert"
+        class="flex items-center p-2 mt-4 rounded-lg bg-gray-800 text-red-400 border-t-4 border-red-800"
+        role="alert"
+      >
+        <span class="sr-only">Info</span>
+        <div class="ms-3 text-sm font-medium">
+          <p class="font-medium">{{ msgError() }}</p>
+        </div>
+      </div>
+      } @else if(msgSuccess()) {
+      <div
+        id="successAlert"
+        class="flex items-center p-2 mt-4 rounded-lg bg-gray-800 text-green-400 border-t-4 border-green-800"
+        role="alert"
+      >
+        <span class="sr-only">Info</span>
+        <div class="ms-3 text-sm font-medium">
+          <p class="font-medium">{{ msgSuccess() }}</p>
+        </div>
+      </div>
+      }
+    </form>
+  </div>
+</section>
