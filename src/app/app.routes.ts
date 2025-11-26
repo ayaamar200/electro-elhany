@@ -23,7 +23,7 @@ import { isloggedGuard } from './core/guards/islogged-guard';
 export const routes: Routes = [
   {
     path: '',
-    component: AuthLayoutComponent,
+    component: BlankLayoutComponent,
 
     children: [
       {
@@ -36,23 +36,6 @@ export const routes: Routes = [
         component: HomeComponent,
         title: 'Electro El-Hany',
       },
-      {
-        path: 'login',
-        component: LoginComponent,
-        title: 'Login',
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        title: 'Register',
-      },
-    ],
-  },
-  {
-    path: '',
-    component: BlankLayoutComponent,
-
-    children: [
       {
         path: 'cart',
         component: CartComponent,
@@ -115,6 +98,24 @@ export const routes: Routes = [
         path: 'store-locations',
         component: StoreLocationsComponent,
         title: 'Store Locations',
+      },
+    ],
+  },
+
+  {
+    path: '',
+    component: AuthLayoutComponent,
+
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        title: 'Login',
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Register',
       },
     ],
   },

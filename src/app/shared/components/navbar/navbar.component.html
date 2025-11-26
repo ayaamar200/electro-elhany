@@ -45,7 +45,7 @@
         class="flex items-center justify-center md:p-0 rounded-lg md:mt-0 md:border-0 md:bg-white"
       >
         <!-- Icons -->
-        @if (!isLogin()) {
+        @if (!isLogin) {
         <li>
           <a
             routerLink="/login"
@@ -102,7 +102,7 @@
       </button>
 
       <!-- User Profile -->
-      @if (isLogin()) {
+      @if (isLogin) {
       <button
         type="button"
         class="flex bg-gray-800 rounded-full p-1 md:me-0 focus:ring-4 focus:ring-gray-300"
@@ -138,7 +138,7 @@
             <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Earnings</a>
           </li>
           <li>
-            <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+            <button (click)="signOut()" class="btn w-full">Sign out</button>
           </li>
         </ul>
       </div>
@@ -159,7 +159,7 @@
             routerLink="/home"
             routerLinkActive="text-red-600 shadow-md"
             class="block w-full py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-600 md:p-2 md:w-auto"
-            aria-current="page"
+            aria-current="home"
             >Home</a
           >
         </li>
