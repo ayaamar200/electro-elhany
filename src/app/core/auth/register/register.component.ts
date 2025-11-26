@@ -24,7 +24,7 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
-  constructor(private flowbiteService: FlowbiteService) {}
+  private readonly flowbiteService = inject(FlowbiteService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
@@ -35,35 +35,14 @@ export class RegisterComponent implements OnInit {
   subscription: Subscription = new Subscription();
   isLoading: boolean = false;
   flag: boolean = true;
-
-  // registerForm: FormGroup = new FormGroup(
-  //   {
-  //     username: new FormControl(null, [
-  //       Validators.required,
-  //       Validators.minLength(3),
-  //       Validators.maxLength(32),
-  //     ]),
-  //     email: new FormControl(null, [
-  //       Validators.required,
-  //       Validators.email,
-  //       Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
-  //     ]),
-  //     phone: new FormControl(null, [
-  //       Validators.required,
-  //       Validators.pattern(/^(\+?\d{1,3})?[-.\s]?\d{8,14}$/),
-  //     ]),
-  //     password: new FormControl(null, [
-  //       Validators.required,
-  //       Validators.pattern(
-  //         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/
-  //       ),
-  //     ]),
-  //     rePassword: new FormControl(null, [Validators.required]),
-  //   },
-  //   { validators: this.confirmPassword }
-  // );
-
   registerForm!: FormGroup;
+
+  ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
+    this.initForm();
+  }
   initForm(): void {
     this.registerForm = this.fb.group(
       {
@@ -95,14 +74,6 @@ export class RegisterComponent implements OnInit {
       { validators: this.confirmPassword }
     );
   }
-
-  ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {
-      initFlowbite();
-    });
-    this.initForm();
-  }
-
   confirmPassword(group: AbstractControl) {
     if (group.get('password')?.value === group.get('rePassword')?.value) {
       return null;

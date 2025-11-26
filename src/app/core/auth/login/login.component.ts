@@ -21,34 +21,25 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(private flowbiteService: FlowbiteService) {}
+  private readonly flowbiteService = inject(FlowbiteService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly platformId = inject(PLATFORM_ID);
+
   msgError = signal<string>('');
   msgSuccess = signal<string>('');
   subscription: Subscription = new Subscription();
   isLoading: boolean = false;
   flag: boolean = true;
-
-  private readonly platformId = inject(PLATFORM_ID);
-
-  // loginForm: FormGroup = new FormGroup({
-  //   email: new FormControl(null, [
-  //     Validators.required,
-  //     Validators.email,
-  //     Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
-  //   ]),
-
-  //   password: new FormControl(null, [
-  //     Validators.required,
-  //     Validators.pattern(
-  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/
-  //     ),
-  //   ]),
-  // });
-
   loginForm!: FormGroup;
+
+  ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
+    this.initForm();
+  }
 
   initForm(): void {
     this.loginForm = this.fb.group({
@@ -71,13 +62,6 @@ export class LoginComponent {
         ],
       ],
     });
-  }
-
-  ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {
-      initFlowbite();
-    });
-    this.initForm();
   }
 
   submit(): void {

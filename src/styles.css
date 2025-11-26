@@ -33,7 +33,9 @@ body {
   font-family: 'SUSE Mono', sans-serif;
 }
 
-p {
+p,
+span,
+.toast-title {
   font-family: 'Edu NSW ACT Foundation', cursive;
 }
 

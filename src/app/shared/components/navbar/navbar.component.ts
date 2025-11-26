@@ -4,7 +4,6 @@ import { FlowbiteService } from '../../../core/services/flowbite/flowbite.servic
 import { initFlowbite } from 'flowbite';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +12,17 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  constructor(private flowbiteService: FlowbiteService) {}
-  isLogin: boolean = false;
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly flowbiteService = inject(FlowbiteService);
+  isLogin: boolean = false;
+  ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
+    this.checkUserLogin();
+  }
 
-  // check if user is logged in using token in local storage
   checkUserLogin(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.isLogin = !!localStorage.getItem('token');
@@ -29,12 +32,5 @@ export class NavbarComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
     this.isLogin = false;
-  }
-
-  ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {
-      initFlowbite();
-    });
-    this.checkUserLogin();
   }
 }
