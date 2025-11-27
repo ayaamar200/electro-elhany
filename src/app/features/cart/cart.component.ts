@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { Cart } from './models/cart.interface';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
