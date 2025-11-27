@@ -35,4 +35,20 @@ export class CartService {
   getLoggedUserCart(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`, this.getHeaders());
   }
+
+  removeSpecificCartItem(id: string): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`, this.getHeaders());
+  }
+
+  clearUserCart(): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`, this.getHeaders());
+  }
+
+  updateCartItemQuantity(id: string, quantity: number): Observable<any> {
+    return this.httpClient.put(
+      `${environment.baseUrl}/api/v1/cart/${id}`,
+      { quantity },
+      this.getHeaders()
+    );
+  }
 }

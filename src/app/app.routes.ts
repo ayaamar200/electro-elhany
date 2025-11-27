@@ -40,6 +40,7 @@ export const routes: Routes = [
         path: 'cart',
         component: CartComponent,
         title: 'Cart',
+        canActivate: [authGuard],
       },
 
       {
@@ -82,6 +83,7 @@ export const routes: Routes = [
         path: 'wishlist',
         component: WishlistComponent,
         title: 'Wishlist',
+        canActivate: [authGuard],
       },
       {
         path: 'checkout',

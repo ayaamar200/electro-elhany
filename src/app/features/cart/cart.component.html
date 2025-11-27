@@ -1,20 +1,20 @@
+@if(cartDetails()) {
 <section class="p-4 my-5">
   <!-- Cart Data -->
-
   <div class="container grid sm:grid-cols-12 gap-4 items-start">
     <div class="col-span-8 bg-white p-4 rounded-md shadow">
       <div class="flex items-center justify-between p-4">
         <div class="flex items-center space-x-3">
           <h1 class="text-3xl font-medium">Cart</h1>
           <span class="text-red-500 font-semibold text-sm">
-            {{ cartDetails.cartItems.length }} items</span
+            {{ cartDetails()?.cartItems?.length }} items</span
           >
         </div>
 
-        <button class="btn">clear cart</button>
+        <button (click)="clearCart()" class="btn">clear cart</button>
       </div>
 
-      @for (item of cartDetails.cartItems; track item.product._id) {
+      @for (item of cartDetails()?.cartItems ?? []; track item.product._id) {
       <div class="bg-gray-100 rounded-md shadow my-4 grid sm:grid-cols-12 relative">
         <div class="col-span-2">
           <img [src]="item.product.imageCover" class="w-full" [alt]="item.product.title" />
@@ -27,11 +27,17 @@
             <div
               class="bg-red-200 border border-red-300 rounded-md flex items-center space-x-10 py-1 px-2"
             >
-              <button class="cursor-pointer text-[10px]">
+              <button
+                (click)="updateItemQuantity(item._id, item.quantity - 1)"
+                class="cursor-pointer text-[10px]"
+              >
                 <i class="fas fa-minus"></i>
               </button>
               <span class="font-medium"> {{ item.quantity }} </span>
-              <button class="cursor-pointer text-[10px]">
+              <button
+                (click)="updateItemQuantity(item._id, item.quantity + 1)"
+                class="cursor-pointer text-[10px]"
+              >
                 <i class="fas fa-plus"></i>
               </button>
             </div>
@@ -41,6 +47,7 @@
           </span>
         </div>
         <button
+          (click)="removeItem(item._id)"
           role="button"
           title="Remove"
           class="absolute top-2 end-2 hover:text-red-500 transition-colors duration-300 cursor-pointer"
@@ -48,12 +55,11 @@
           <i class="fa-regular fa-trash-can text-sm font-medium"></i>
         </button>
       </div>
-      }
-      <!-- @else {
+      } @if(cartDetails()?.cartItems?.length === 0) {
       <div class="bg-white shadow h-[100px] flex justify-center items-center">
         <h2 class="font-medium">your cart is empty</h2>
       </div>
-      } -->
+      }
     </div>
 
     <!-- Payment -->
@@ -64,11 +70,14 @@
 
         <div class="flex justify-between items-center my-4">
           <h3>Total Price</h3>
-          <h4>{{ cartDetails.totalCartPrice | currency : 'GBP' }}</h4>
+          <h4>{{ cartDetails()?.totalCartPrice | currency : 'GBP' }}</h4>
         </div>
       </div>
 
-      <button class="btn rounded-md my-5 w-full">checkout</button>
+      <button routerLink="/checkout" role="button" class="btn rounded-md my-5 w-full">
+        checkout
+      </button>
     </div>
   </div>
 </section>
+}
