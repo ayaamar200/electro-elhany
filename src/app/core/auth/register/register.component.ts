@@ -1,11 +1,9 @@
-import { register } from 'swiper/element/bundle';
 import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { FlowbiteService } from '../../services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,

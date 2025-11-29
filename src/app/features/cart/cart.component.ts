@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
     this.getCartData();
   }
   getCartData() {
-    this.cartService.getLoggedUserCart().subscribe({
+    this.cartService.getCart().subscribe({
       next: (res) => {
         this.cartDetails.set(res.data);
         console.log('Cart data:', res.data);

@@ -7,7 +7,6 @@
       <p class="text-red-400">Sign in to your account</p>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="submit()" class="main-form">
-      <!-- Email Address -->
       <app-input
         [control]="loginForm.get('email')"
         [inputType]="'email'"
@@ -18,39 +17,6 @@
         Email must end with a valid domain (e.g., .com, .net, .org)
       </app-input>
 
-      <!-- <div class="mb-5">
-        @let emailControl = loginForm.get('email');
-        <label for="email" class="main-label">Your email</label>
-        <input
-          formControlName="email"
-          type="email"
-          id="email"
-          [class]="{'border-b-red-500': emailControl?.invalid && (emailControl?.dirty || emailControl?.touched),
-            'border-b-green-500': emailControl?.valid,
-          }"
-          class="main-input"
-          placeholder="username@gmail.com"
-          required
-        />
-
-        @if( emailControl?.errors && (emailControl?.dirty || emailControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            @if (emailControl?.getError('required')) {
-            <li>Email is required</li>
-            } @else if (emailControl?.getError('email')) {
-            <li>Enter a valid email address</li>
-            } @else if (emailControl?.getError('pattern')) {
-            <li>Email must end with a valid domain (e.g., .com, .net, .org)</li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
-
-      <!-- Password -->
-
       <app-input
         [control]="loginForm.get('password')"
         [inputId]="'password'"
@@ -60,51 +26,6 @@
         Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
         symbol
       </app-input>
-
-      <!-- <div class="mb-5">
-        @let passControl = loginForm.get('password');
-        <label for="password" class="main-label">Your password</label>
-        <div class="relative">
-          <input
-            formControlName="password"
-            [type]="flag ? 'password' : 'text'"
-            id="password"
-            [class]="{'border-b-red-500': passControl?.invalid && (passControl?.dirty || passControl?.touched),
-            'border-b-green-500': passControl?.valid,
-          }"
-            class="main-input"
-            placeholder="******"
-            required
-          />
-          <span
-            (click)="flag = !flag"
-            class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
-          >
-            @if(flag) {
-            <i class="fa-regular fa-eye"></i>
-
-            } @else {
-            <i class="fa-regular fa-eye-slash"></i>
-            }
-          </span>
-        </div>
-
-        @if( passControl?.errors && (passControl?.dirty || passControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            @if (passControl?.getError('required')) {
-            <li>Password is required</li>
-            } @else if (passControl?.getError('pattern')) {
-            <li>
-              Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
-              symbol
-            </li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
 
       <button class="btn w-full my-2">
         Sign Up @if(isLoading) {

@@ -3,6 +3,7 @@
   <label [for]="inputId" class="main-label">{{ label }}</label>
 
   <div class="relative">
+    @if (element === 'input') {
     <input
       [formControl]="control"
       [type]="inputType || (flag ? 'password' : 'text')"
@@ -14,7 +15,18 @@
       [placeholder]="placeholder"
       required
     />
-    @if ( inputId === "password" || inputId === "rePassword") {
+    }@else if (element === 'textarea') {
+    <textarea
+      [formControl]="control"
+      [id]="inputId"
+      [class]="{'border-b-red-500': control?.invalid && (control?.dirty || control?.touched),
+            'border-b-green-500': control?.valid,
+          }"
+      class="main-input"
+      [placeholder]="placeholder"
+      required
+    ></textarea
+    >} @if ( inputId === "password" || inputId === "rePassword") {
     <span
       (click)="flag = !flag"
       class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"

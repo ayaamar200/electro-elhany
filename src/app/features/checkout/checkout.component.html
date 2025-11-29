@@ -1,1 +1,19 @@
-<p>checkout works!</p>
+<section class="my-5">
+  <div
+    class="container max-w-xl bg-gray-100 mx-auto mt-5 border border-gray-200 p-6 shadow-md rounded-md"
+  >
+    <div class="main-title text-center capitalize py-4">
+      <h2 class="text-2xl text-gray-900 font-medium">Checkout</h2>
+      <p class="text-red-400">Complete your purchase</p>
+    </div>
+    <form [formGroup]="checkoutForm" class="main-form">
+      <app-input
+        [element]="'textarea'"
+        [control]="checkoutForm.get('details')"
+        [inputId]="'details'"
+        [placeholder]="'Enter your Address Details'"
+        [label]="'Delivery Address'"
+      ></app-input>
+    </form>
+  </div>
+</section>

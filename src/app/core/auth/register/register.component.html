@@ -7,8 +7,6 @@
       <p class="text-red-400">Sign up to get started</p>
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="submit()" class="main-form">
-      <!-- User Name -->
-
       <app-input
         [control]="registerForm.get('username')"
         [inputType]="'text'"
@@ -17,38 +15,6 @@
         [label]="'Your Name'"
       >
       </app-input>
-
-      <!-- <div class="mb-5">
-        @let nameControl = registerForm.get('username');
-        <label for="username" class="main-label">Your Name</label>
-        <input
-          formControlName="username"
-          inputType="text"
-          id="username"
-          [class]="{'border-b-red-500': nameControl?.invalid && (nameControl?.dirty || nameControl?.touched),
-            'border-b-green-500': nameControl?.valid,
-          }"
-          class="main-input"
-          placeholder="your username"
-          required
-        />
-        @if( nameControl?.errors && (nameControl?.dirty || nameControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-
-          <ul class="list-disc list-inside">
-            @if (nameControl?.getError('required')) {
-            <li>User Name is required</li>
-            } @else if (nameControl?.getError('minlength')) {
-            <li>User Name must be at least 3 characters</li>
-            } @else if (nameControl?.getError('maxlength')) {
-            <li>User Name must be at most 32 characters</li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
-      <!-- Email Address -->
 
       <app-input
         [control]="registerForm.get('email')"
@@ -60,37 +26,6 @@
         Email must end with a valid domain (e.g., .com, .net, .org)
       </app-input>
 
-      <!-- <div class="mb-5">
-        @let emailControl = registerForm.get('email');
-        <label for="email" class="main-label">Your email</label>
-        <input
-          formControlName="email"
-          inputType="email"
-          id="email"
-          [class]="{'border-b-red-500': emailControl?.invalid && (emailControl?.dirty || emailControl?.touched),
-            'border-b-green-500': emailControl?.valid,
-          }"
-          class="main-input"
-          placeholder="username@gmail.com"
-          required
-        />
-
-        @if( emailControl?.errors && (emailControl?.dirty || emailControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            @if (emailControl?.getError('required')) {
-            <li>Email is required</li>
-            } @else if (emailControl?.getError('email')) {
-            <li>Enter a valid email address</li>
-            } @else if (emailControl?.getError('pattern')) {
-            <li>Email must end with a valid domain (e.g., .com, .net, .org)</li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
-      <!-- Phone Number -->
       <app-input
         [control]="registerForm.get('phone')"
         [inputType]="'tel'"
@@ -102,37 +37,6 @@
         01012345678)
       </app-input>
 
-      <!-- <div class="mb-5">
-        @let phoneControl = registerForm.get('phone');
-        <label for="phone" class="main-label">Your Phone</label>
-        <input
-          formControlName="phone"
-          inputType="tel"
-          id="phone"
-          [class]="{'border-b-red-500': phoneControl?.invalid && (phoneControl?.dirty || phoneControl?.touched),
-            'border-b-green-500': phoneControl?.valid,
-          }"
-          class="main-input"
-          placeholder="01012345678"
-          required
-        />
-        @if( phoneControl?.errors && (phoneControl?.dirty || phoneControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            @if (phoneControl?.getError('required')) {
-            <li>Phone Number is required</li>
-            } @else if (phoneControl?.getError('pattern')) {
-            <li>
-              Invalid phone number format. Accepts local or international (e.g., +201001234567 or
-              01012345678)
-            </li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
-      <!-- Password -->
       <app-input
         [control]="registerForm.get('password')"
         [inputId]="'password'"
@@ -143,54 +47,6 @@
         symbol
       </app-input>
 
-      <!-- <div class="mb-5">
-        @let passControl = registerForm.get('password');
-        <label for="password" class="main-label">Your password</label>
-
-        <div class="relative">
-          <input
-            formControlName="password"
-            [inputType]="flag ? 'password' : 'text'"
-            id="password"
-            [class]="{'border-b-red-500': passControl?.invalid && (passControl?.dirty || passControl?.touched),
-            'border-b-green-500': passControl?.valid,
-          }"
-            class="main-input"
-            placeholder="******"
-            required
-          />
-          <span
-            (click)="flag = !flag"
-            class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
-          >
-            @if(flag) {
-            <i class="fa-regular fa-eye"></i>
-
-            } @else {
-            <i class="fa-regular fa-eye-slash"></i>
-            }
-          </span>
-        </div>
-
-        @if( passControl?.errors && (passControl?.dirty || passControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            @if (passControl?.getError('required')) {
-            <li>Password is required</li>
-            } @else if (passControl?.getError('pattern')) {
-            <li>
-              Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1
-              symbol
-            </li>
-            }
-          </ul>
-        </div>
-        }
-      </div> -->
-
-      <!-- Repeat Password -->
-
       <app-input
         [control]="registerForm.get('rePassword')"
         [inputId]="'rePassword'"
@@ -198,46 +54,6 @@
         [label]="'Repeat Password'"
       >
       </app-input>
-
-      <!-- <div class="mb-5">
-        @let rePassControl = registerForm.get('rePassword');
-        <label for="rePassword" class="main-label">Repeat password</label>
-        <input
-          formControlName="rePassword"
-          inputType="password"
-          id="rePassword"
-          [class]="{'border-b-red-500': rePassControl?.invalid && (rePassControl?.dirty || rePassControl?.touched),
-            'border-b-green-500': rePassControl?.valid,
-          }"
-          class="main-input"
-          placeholder="******"
-          required
-        />
-
-        @if(registerForm.getError('mismatch') && (rePassControl?.dirty || rePassControl?.touched)) {
-        <div class="flex py-2 px-4 my-1 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
-          <span class="sr-only">Danger</span>
-          <ul class="list-disc list-inside">
-            <li>Passwords do not match</li>
-          </ul>
-        </div>
-        }
-      </div> -->
-      <!-- <div class="flex items-start mb-5">
-        <div class="flex items-center h-5">
-          <input
-            id="terms"
-            inputType="checkbox"
-            value=""
-            class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300"
-            required
-          />
-        </div>
-        <label for="terms" class="ms-2 text-sm font-medium text-gray-900"
-          >I agree with the
-          <a href="#" class="text-blue-600 hover:underline">terms and conditions</a></label
-        >
-      </div> -->
 
       <button class="btn w-full mt-1">
         Sign Up @if(isLoading) {

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class InputComponent {
   @Input() label: string = '';
   @Input() inputType!: string;
+  @Input() element: string = 'input';
   @Input() inputId: string = '';
   @Input() placeholder: string = '';
   @Input() control: any;

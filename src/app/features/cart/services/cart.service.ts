@@ -9,46 +9,34 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class CartService {
   private readonly httpClient = inject(HttpClient);
-  private readonly platformId = inject(PLATFORM_ID);
 
-  private getHeaders() {
-    let token = '';
-    if (isPlatformBrowser(this.platformId)) {
-      token = localStorage.getItem('token') ?? '';
-    }
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  }
-
-  addProductToCart(productId: string): Observable<any> {
+  addProductToCart(productId: string, color?: string): Observable<any> {
     return this.httpClient.post(
       `${environment.baseUrl}/api/v1/cart`,
-      { productId },
-      this.getHeaders()
+      { productId, color },
+      { withCredentials: true }
     );
   }
 
-  getLoggedUserCart(): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`, this.getHeaders());
+  getCart(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`, { withCredentials: true });
   }
 
   removeSpecificCartItem(id: string): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`, this.getHeaders());
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`, {
+      withCredentials: true,
+    });
   }
 
   clearUserCart(): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`, this.getHeaders());
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`, { withCredentials: true });
   }
 
   updateCartItemQuantity(id: string, quantity: number): Observable<any> {
     return this.httpClient.put(
       `${environment.baseUrl}/api/v1/cart/${id}`,
       { quantity },
-      this.getHeaders()
+      { withCredentials: true }
     );
   }
 }
