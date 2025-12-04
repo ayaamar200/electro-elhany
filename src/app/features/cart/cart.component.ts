@@ -15,6 +15,9 @@ export class CartComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly toastService = inject(ToastService);
 
+  tax: number = 14;
+  shipping: number | string = 'Free';
+
   cartDetails = signal<Cart | null>(null);
   ngOnInit() {
     this.getCartData();

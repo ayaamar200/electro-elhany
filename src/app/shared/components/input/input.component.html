@@ -13,7 +13,6 @@
           }"
       class="main-input"
       [placeholder]="placeholder"
-      required
     />
     }@else if (element === 'textarea') {
     <textarea
@@ -24,7 +23,6 @@
           }"
       class="main-input"
       [placeholder]="placeholder"
-      required
     ></textarea
     >} @if ( inputId === "password" || inputId === "rePassword") {
     <span
@@ -32,10 +30,10 @@
       class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-gray-600"
     >
       @if(flag) {
-      <i class="fa-regular fa-eye"></i>
+      <i class="fa-regular fa-eye text-red-300"></i>
 
       } @else {
-      <i class="fa-regular fa-eye-slash"></i>
+      <i class="fa-regular fa-eye-slash text-red-300"></i>
       }
     </span>
 

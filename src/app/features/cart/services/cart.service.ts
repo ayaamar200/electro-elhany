@@ -39,4 +39,12 @@ export class CartService {
       { withCredentials: true }
     );
   }
+
+  checkoutSession(cartId: string | null, data: object): Observable<any> {
+    return this.httpClient.post(
+      `${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}`,
+      data,
+      { withCredentials: true }
+    );
+  }
 }
