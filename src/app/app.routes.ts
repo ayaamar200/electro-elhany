@@ -19,6 +19,7 @@ import { OutdoorLightsComponent } from './features/outdoor-lights/outdoor-lights
 import { DecorativeLightsComponent } from './features/decorative-lights/decorative-lights.component';
 import { authGuard } from './core/guards/auth-guard';
 import { isloggedGuard } from './core/guards/islogged-guard';
+import { AllOrdersComponent } from './features/all-orders/all-orders.component';
 
 export const routes: Routes = [
   {
@@ -93,6 +94,11 @@ export const routes: Routes = [
         path: 'all-products',
         component: ProductsComponent,
         title: 'All Products',
+      },
+      {
+        path: 'all-orders',
+        component: AllOrdersComponent,
+        title: 'All Orders',
       },
       {
         path: 'store-locations',

@@ -8,13 +8,13 @@
     <input
       [(ngModel)]="searchTerm"
       type="search"
-      class="main-input my-2"
+      class="main-input my-5 bg-gray-100"
       name="search"
       id="search "
       placeholder=" Search..... "
     />
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-5">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       @for (product of productList()| paginate: { id: 'foo', itemsPerPage: pageSize, currentPage: p,
       totalItems: total} | search: searchTerm ; track product._id) {
       <app-card [product]="product" />

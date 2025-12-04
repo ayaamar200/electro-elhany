@@ -17,7 +17,10 @@
 
       @for (item of cartDetails()?.cartItems ?? []; track item.product._id) {
       <div class="bg-gray-100 rounded-md shadow-md my-4 grid sm:grid-cols-12 relative">
-        <div class="col-span-2">
+        <div
+          class="col-span-2 cursor-pointer"
+          [routerLink]="['/details', item.product.slug, item.product._id]"
+        >
           <img [src]="item.product.imageCover" class="w-full" [alt]="item.product.title" />
         </div>
 
@@ -69,7 +72,7 @@
       <div class="border-b-2 border-red-300">
         <div class="flex justify-between items-center">
           <h2 class="md:text-xl font-medium text-center">Order Summary</h2>
-          <a routerLink="'/all-products'" class="text-red-600 text-sm font-medium underline">
+          <a routerLink="/all-products" class="text-red-600 text-sm font-medium underline">
             Continue Shopping
             <i class="fas fa-arrow-right"></i>
           </a>

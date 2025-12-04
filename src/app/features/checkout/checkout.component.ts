@@ -15,7 +15,7 @@ import { CartService } from '../cart/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
-  imports: [InputComponent, ReactiveFormsModule, RouterLink, CartComponent],
+  imports: [InputComponent, ReactiveFormsModule, RouterLink],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })
@@ -76,7 +76,9 @@ export class CheckoutComponent implements OnInit {
       this.cartService.checkoutSession(this.id, this.checkoutForm.value).subscribe({
         next: (res) => {
           console.log(res);
-          // window.location.href = res.data.url;
+          if (res.status === 'success') {
+            window.open(res.session.url, '_self');
+          }
         },
         error: (err) => {
           console.log(err);

@@ -1,23 +1,27 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductDetailsService } from './services/product-details.service';
 import { Product } from '../../core/models/product.interface';
+import { CartService } from '../cart/services/cart.service';
+import { ToastService } from '../../core/services/toast/toast.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-details',
-  imports: [],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly productDetailsService = inject(ProductDetailsService);
-
+  product = input.required<Product>();
+  private readonly cartService = inject(CartService);
+  private readonly toastService = inject(ToastService);
   productId: string | null = null;
-    productDetails = signal<Product>({}as Product);
 
+  productDetails = signal<Product>({} as Product);
 
   ngOnInit(): void {
     this.getProductId();
@@ -40,6 +44,20 @@ export class DetailsComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+      },
+    });
+  }
+
+  addToCart(productId: string): void {
+    this.cartService.addProductToCart(productId).subscribe({
+      next: (res) => {
+        console.log('Product added to cart:', res);
+        if (res.status === 'success') {
+          this.toastService.show(res.message, 'success');
+        }
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
   }

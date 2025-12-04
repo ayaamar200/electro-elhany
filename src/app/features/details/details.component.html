@@ -1,12 +1,12 @@
 <section>
   <div class="container">
     <div class="main-title text-center">
-      <h2 class="text-2xl text-gray-900 font-bold">Product Details</h2>
+      <h1 class="text-3xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Product Details</h1>
     </div>
 
     @if (productDetails()) {
     <div class="py-10 px-20">
-      <div class="details-body grid md:grid-cols-12 gap-6">
+      <div class="details-body grid md:grid-cols-12 gap-6 items-start">
         <!-- Product Images -->
         <div class="md:col-span-5">
           <swiper-container
@@ -70,7 +70,7 @@
 
         <!-- Products Details -->
         <div
-          class="md:col-span-7 flex flex-col justify-center border border-gray-200 p-4 rounded-md shadow-sm relative"
+          class="md:col-span-7 flex flex-col justify-center border border-gray-200 p-6 rounded-md shadow-sm relative"
         >
           <button
             role="button"
@@ -80,14 +80,16 @@
             <i class="fa-regular fa-heart"></i>
           </button>
 
-          <h1 class="text-2xl font-medium leading-9">
+          <h1 class="text-2xl font-medium leading-9 py-4">
             {{ productDetails().title }}
           </h1>
 
           <div class="flex justify-between items-center my-2">
             <div>
               <span class="text-sm">by</span>
-              <span class="text-red-700 font-bold text-sm"> {{ productDetails().brand.name }}</span>
+              <span class="text-red-700 font-bold text-sm">
+                {{ productDetails()?.brand?.name }}</span
+              >
             </div>
 
             <!-- Ratings -->
@@ -115,7 +117,7 @@
 
           <!-- Product Price -->
           <div class="flex justify-between items-center font-bold mt-3">
-            <p>{{ productDetails().price }} EGP</p>
+            <p>{{ productDetails().price | currency : 'GBP' }}</p>
             <p class="text-sm text-red-700">
               {{ productDetails().quantity }}
               <span> Items</span>
@@ -127,23 +129,33 @@
 
           <!-- Quantity -->
 
-          <div class="flex items-center justify-between space-x-6 mt-10">
-            <div class="border border-gray-300 rounded-md py-2 space-x-4 text-sm font-medium">
+          <!-- <div class="border border-gray-300 rounded-md py-2 space-x-4 text-sm font-medium">
               <button class="cursor-pointer border-e border-gray-300 px-3">-</button>
               <span>1</span>
               <button class="cursor-pointer border-s border-gray-300 px-3">+</button>
-            </div>
-            <button title="Add To Cart" role="button" class="btn grow">
+            </div> -->
+
+          <div class="flex justify-between items-center my-4">
+            <button
+              (click)="addToCart(productDetails()._id)"
+              title="Add To Cart"
+              role="button"
+              class="btn"
+            >
               Add To Cart
               <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+            <button routerLink="/all-products" class="btn">
+              Continue Shopping
+              <i class="fas fa-arrow-right"></i>
             </button>
           </div>
 
           <div class="text-sm font-light mt-4">
             <p class="font-medium">
               Categories:<span class="text-gray-700">
-                {{ productDetails().category.name }},
-                {{ productDetails().subcategories[0].name }}</span
+                {{ productDetails()?.category?.name }},
+                {{ productDetails()?.subcategories?.[0]?.name }}</span
               >
             </p>
 

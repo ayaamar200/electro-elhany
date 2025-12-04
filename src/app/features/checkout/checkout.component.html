@@ -6,30 +6,29 @@
     </div>
     <div class="grid sm:grid-cols-2">
       <div class="mt-5 border border-gray-100 p-8">
-        <div class="flex justify-between items-center">
-          <h2 class="text-red-500 py-1">Contact Information</h2>
-          <p class="py-1 text-center">
-            Already have an account?
-            <a routerLink="/login" class="text-red-600 underline cursor-pointer">Login</a>
-          </p>
-        </div>
-
         <form [formGroup]="checkoutForm" class="main-form">
+          <div class="flex justify-between items-center">
+            <h2 class="text-red-500 py-1">Contact Information</h2>
+            <p class="py-1 text-center">
+              Already have an account?
+              <a routerLink="/login" class="text-red-600 underline cursor-pointer">Login</a>
+            </p>
+          </div>
           <app-input
             [element]="'input'"
             [control]="checkoutForm.get('contactEmail')"
-            [inputId]="'contactEmail'"
-            [placeholder]="'Enter your Email'"
+            [inputId]="'email'"
+            [inputType]="'email'"
+            [placeholder]="'Enter your email'"
             [label]="''"
           >
             Email must end with a valid domain (e.g., .com, .net, .org)
           </app-input>
-        </form>
-        <h2 class="text-red-500 py-2">Shipping Address</h2>
-        <form [formGroup]="checkoutForm" class="main-form">
+
+          <h2 class="text-red-500 py-2">Shipping Address</h2>
           <app-input
             [element]="'input'"
-            [control]="checkoutForm.get('fullName')"
+            [control]="checkoutForm.get('shippingAddress.fullName')"
             [inputId]="'fullName'"
             [inputType]="'text'"
             [placeholder]="'Enter your Full Name'"
@@ -37,7 +36,7 @@
           ></app-input>
           <app-input
             [element]="'textarea'"
-            [control]="checkoutForm.get('streetAddress')"
+            [control]="checkoutForm.get('shippingAddress.streetAddress')"
             [inputId]="'address'"
             [placeholder]="'Enter your Address Details...'"
             [label]="'Delivery Address'"
@@ -45,7 +44,7 @@
           </app-input>
           <app-input
             [element]="'input'"
-            [control]="checkoutForm.get('phone')"
+            [control]="checkoutForm.get('shippingAddress.phone')"
             [inputId]="'phone'"
             [inputType]="'tel'"
             [placeholder]="'Enter your Phone Number'"
@@ -56,7 +55,7 @@
           </app-input>
           <app-input
             [element]="'input'"
-            [control]="checkoutForm.get('country')"
+            [control]="checkoutForm.get('shippingAddress.country')"
             [inputId]="'country'"
             [inputType]="'text'"
             [placeholder]="'Country...'"
@@ -64,7 +63,7 @@
           ></app-input>
           <app-input
             [element]="'input'"
-            [control]="checkoutForm.get('city')"
+            [control]="checkoutForm.get('shippingAddress.city')"
             [inputId]="'city'"
             [inputType]="'text'"
             [placeholder]="'City...'"
@@ -73,7 +72,7 @@
           <div class="flex justify-between items-center space-x-2">
             <app-input
               [element]="'input'"
-              [control]="checkoutForm.get('governorate')"
+              [control]="checkoutForm.get('shippingAddress.governorate')"
               [inputId]="'governorate'"
               [inputType]="'text'"
               [placeholder]="'Governorate...'"
@@ -81,7 +80,7 @@
             ></app-input>
             <app-input
               [element]="'input'"
-              [control]="checkoutForm.get('building')"
+              [control]="checkoutForm.get('shippingAddress.building')"
               [inputId]="'building'"
               [inputType]="'text'"
               [placeholder]="'Optional'"
@@ -89,7 +88,7 @@
             ></app-input>
             <app-input
               [element]="'input'"
-              [control]="checkoutForm.get('postalCode')"
+              [control]="checkoutForm.get('shippingAddress.postalCode')"
               [inputId]="'postalCode'"
               [inputType]="'text'"
               [placeholder]="'Optional'"
@@ -99,7 +98,7 @@
 
           <app-input
             [element]="'textarea'"
-            [control]="checkoutForm.get('notes')"
+            [control]="checkoutForm.get('shippingAddress.notes')"
             [inputId]="'notes'"
             [placeholder]="'Enter any Additional Notes (Optional)'"
             [label]="'Notes'"
@@ -113,8 +112,7 @@
       </div>
 
       <div class="mt-5 p-8">
-        <h2 class="text-lg text-center">Your Order</h2>
-        <app-cart></app-cart>
+        <h2 class="text-xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Your Order</h2>
       </div>
     </div>
   </div>
