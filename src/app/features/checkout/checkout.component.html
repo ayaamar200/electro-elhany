@@ -1,119 +1,153 @@
 <section class="my-5">
-  <div class="container">
+  <div class="container w-[65%]">
     <div class="main-title text-center capitalize py-4">
       <h1 class="text-2xl">Checkout</h1>
       <p class="text-red-400">Complete your purchase</p>
     </div>
-    <div class="grid sm:grid-cols-2">
-      <div class="mt-5 border border-gray-100 p-8">
+    <div class="grid sm:grid-cols-1">
+      <div class="mt-5 border border-gray-200 p-8 shadow-md rounded-md">
         <form [formGroup]="checkoutForm" class="main-form">
-          <div class="flex justify-between items-center">
-            <h2 class="text-red-500 py-1">Contact Information</h2>
-            <p class="py-1 text-center">
-              Already have an account?
-              <a routerLink="/login" class="text-red-600 underline cursor-pointer">Login</a>
-            </p>
-          </div>
-          <app-input
-            [element]="'input'"
-            [control]="checkoutForm.get('contactEmail')"
-            [inputId]="'email'"
-            [inputType]="'email'"
-            [placeholder]="'Enter your email'"
-            [label]="''"
-          >
-            Email must end with a valid domain (e.g., .com, .net, .org)
-          </app-input>
-
-          <h2 class="text-red-500 py-2">Shipping Address</h2>
-          <app-input
-            [element]="'input'"
-            [control]="checkoutForm.get('shippingAddress.fullName')"
-            [inputId]="'fullName'"
-            [inputType]="'text'"
-            [placeholder]="'Enter your Full Name'"
-            [label]="'Full Name'"
-          ></app-input>
-          <app-input
-            [element]="'textarea'"
-            [control]="checkoutForm.get('shippingAddress.streetAddress')"
-            [inputId]="'address'"
-            [placeholder]="'Enter your Address Details...'"
-            [label]="'Delivery Address'"
-          >
-          </app-input>
-          <app-input
-            [element]="'input'"
-            [control]="checkoutForm.get('shippingAddress.phone')"
-            [inputId]="'phone'"
-            [inputType]="'tel'"
-            [placeholder]="'Enter your Phone Number'"
-            [label]="'Phone Number'"
-          >
-            Invalid phone number format. Accepts local or international (e.g., +201001234567 or
-            01012345678)
-          </app-input>
-          <app-input
-            [element]="'input'"
-            [control]="checkoutForm.get('shippingAddress.country')"
-            [inputId]="'country'"
-            [inputType]="'text'"
-            [placeholder]="'Country...'"
-            [label]="'Country'"
-          ></app-input>
-          <app-input
-            [element]="'input'"
-            [control]="checkoutForm.get('shippingAddress.city')"
-            [inputId]="'city'"
-            [inputType]="'text'"
-            [placeholder]="'City...'"
-            [label]="'City'"
-          ></app-input>
-          <div class="flex justify-between items-center space-x-2">
+          <div>
+            <div class="flex justify-between items-center">
+              <h2 class="text-red-500 py-1">Contact Information</h2>
+              <p class="py-1 text-center">
+                Already have an account?
+                <a routerLink="/login" class="text-red-600 underline cursor-pointer">Login</a>
+              </p>
+            </div>
             <app-input
               [element]="'input'"
-              [control]="checkoutForm.get('shippingAddress.governorate')"
-              [inputId]="'governorate'"
-              [inputType]="'text'"
-              [placeholder]="'Governorate...'"
-              [label]="'Governorate'"
-            ></app-input>
-            <app-input
-              [element]="'input'"
-              [control]="checkoutForm.get('shippingAddress.building')"
-              [inputId]="'building'"
-              [inputType]="'text'"
-              [placeholder]="'Optional'"
-              [label]="'Building Info'"
-            ></app-input>
-            <app-input
-              [element]="'input'"
-              [control]="checkoutForm.get('shippingAddress.postalCode')"
-              [inputId]="'postalCode'"
-              [inputType]="'text'"
-              [placeholder]="'Optional'"
-              [label]="'Postal Code'"
-            ></app-input>
+              [control]="checkoutForm.get('contactEmail')"
+              [inputId]="'email'"
+              [inputType]="'email'"
+              [placeholder]="'Enter your email'"
+              [label]="''"
+            >
+              Email must end with a valid domain (e.g., .com, .net, .org)
+            </app-input>
           </div>
 
-          <app-input
-            [element]="'textarea'"
-            [control]="checkoutForm.get('shippingAddress.notes')"
-            [inputId]="'notes'"
-            [placeholder]="'Enter any Additional Notes (Optional)'"
-            [label]="'Notes'"
-          ></app-input>
-          <div class="flex justify-end">
-            <button type="submit" class="btn block uppercase" (click)="submit()">
-              place order
-            </button>
+          <div>
+            <h2 class="text-red-500 py-2">Shipping Address</h2>
+            <app-input
+              [element]="'input'"
+              [control]="checkoutForm.get('shippingAddress.fullName')"
+              [inputId]="'fullName'"
+              [inputType]="'text'"
+              [placeholder]="'Enter your Full Name'"
+              [label]="'Full Name'"
+            ></app-input>
+            <app-input
+              [element]="'textarea'"
+              [control]="checkoutForm.get('shippingAddress.streetAddress')"
+              [inputId]="'address'"
+              [placeholder]="'Enter your Address Details...'"
+              [label]="'Delivery Address'"
+            >
+            </app-input>
+            <app-input
+              [element]="'input'"
+              [control]="checkoutForm.get('shippingAddress.phone')"
+              [inputId]="'phone'"
+              [inputType]="'tel'"
+              [placeholder]="'Enter your Phone Number'"
+              [label]="'Phone Number'"
+            >
+              Invalid phone number format. Accepts local or international (e.g., +201001234567 or
+              01012345678)
+            </app-input>
+            <app-input
+              [element]="'input'"
+              [control]="checkoutForm.get('shippingAddress.country')"
+              [inputId]="'country'"
+              [inputType]="'text'"
+              [placeholder]="'Country...'"
+              [label]="'Country'"
+            ></app-input>
+            <app-input
+              [element]="'input'"
+              [control]="checkoutForm.get('shippingAddress.city')"
+              [inputId]="'city'"
+              [inputType]="'text'"
+              [placeholder]="'City...'"
+              [label]="'City'"
+            ></app-input>
+            <div class="flex justify-between items-center space-x-2">
+              <app-input
+                [element]="'input'"
+                [control]="checkoutForm.get('shippingAddress.governorate')"
+                [inputId]="'governorate'"
+                [inputType]="'text'"
+                [placeholder]="'Governorate...'"
+                [label]="'Governorate'"
+              ></app-input>
+              <app-input
+                [element]="'input'"
+                [control]="checkoutForm.get('shippingAddress.building')"
+                [inputId]="'building'"
+                [inputType]="'text'"
+                [placeholder]="'Optional'"
+                [label]="'Building Info'"
+              ></app-input>
+              <app-input
+                [element]="'input'"
+                [control]="checkoutForm.get('shippingAddress.postalCode')"
+                [inputId]="'postalCode'"
+                [inputType]="'text'"
+                [placeholder]="'Optional'"
+                [label]="'Postal Code'"
+              ></app-input>
+            </div>
+
+            <app-input
+              [element]="'textarea'"
+              [control]="checkoutForm.get('shippingAddress.notes')"
+              [inputId]="'notes'"
+              [placeholder]="'Enter any Additional Notes (Optional)'"
+              [label]="'Notes'"
+            ></app-input>
+          </div>
+
+          <div>
+            <h2 class="text-red-500 py-1">Payment Method</h2>
+
+            <div class="space-y-3">
+              <!-- CARD -->
+              <label
+                class="flex items-center p-4 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-50"
+                [class.border-red-500]="checkoutForm.get('paymentMethod')?.value === 'card'"
+              >
+                <input type="radio" class="mr-3" formControlName="paymentMethod" value="card" />
+                <div class="flex flex-col">
+                  <span class="font-medium text-gray-700">Credit / Debit Card</span>
+                  <span class="text-xs text-gray-500">Visa, MasterCard, AMEX</span>
+                </div>
+              </label>
+
+              <!-- CASH -->
+              <label
+                class="flex items-center p-4 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-50"
+                [class.border-red-500]="checkoutForm.get('paymentMethod')?.value === 'cod'"
+              >
+                <input type="radio" class="mr-3" formControlName="paymentMethod" value="cod" />
+                <div class="flex flex-col">
+                  <span class="font-medium text-gray-700">Cash on Delivery</span>
+                  <span class="text-xs text-gray-500">Pay when your order arrives</span>
+                </div>
+              </label>
+            </div>
+            <div class="flex justify-end my-3">
+              <button type="submit" class="btn block uppercase" (click)="submit()">
+                place order
+              </button>
+            </div>
           </div>
         </form>
       </div>
 
-      <div class="mt-5 p-8">
+      <!-- <div class="mt-5 p-8">
         <h2 class="text-xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Your Order</h2>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

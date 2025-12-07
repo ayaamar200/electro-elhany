@@ -47,4 +47,10 @@ export class CartService {
       { withCredentials: true }
     );
   }
+
+  createCashOrder(cartId: string | null, data: object): Observable<any> {
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/${cartId}`, data, {
+      withCredentials: true,
+    });
+  }
 }

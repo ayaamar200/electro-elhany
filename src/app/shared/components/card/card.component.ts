@@ -26,9 +26,9 @@ export class CardComponent {
           this.toastService.show(res.message, 'success');
         }
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 }

@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { InputComponent } from '../../shared/components/input/input.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/services/cart.service';
 
@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly cartService = inject(CartService);
+  private readonly router = inject(Router);
   id: string | null = null;
   checkoutForm!: FormGroup;
 
@@ -56,6 +57,7 @@ export class CheckoutComponent implements OnInit {
         building: [null],
         notes: [null],
       }),
+      paymentMethod: [null, Validators.required],
     });
   }
 
@@ -69,9 +71,29 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.checkoutForm.valid) {
-      console.log(this.checkoutForm.value);
-      console.log(this.id);
+    if (this.checkoutForm.invalid) {
+      this.checkoutForm.markAllAsTouched();
+      return;
+    }
+    const method = this.checkoutForm.get('paymentMethod')?.value;
+    if (method === 'cod') {
+      // ------------------------------
+      // CASH ON DELIVERY ORDER
+      // ------------------------------
+      this.cartService.createCashOrder(this.id, this.checkoutForm.value).subscribe({
+        next: (res) => {
+          console.log('Cash order response:', res);
+
+          if (res.status === 'success') {
+            // Navigate to order list page
+            this.router.navigate(['/all-orders']);
+          }
+        },
+      });
+    } else if (method === 'card') {
+      // if (this.checkoutForm.valid) {
+      //   console.log(this.checkoutForm.value);
+      //   console.log(this.id);
 
       this.cartService.checkoutSession(this.id, this.checkoutForm.value).subscribe({
         next: (res) => {
@@ -80,9 +102,9 @@ export class CheckoutComponent implements OnInit {
             window.open(res.session.url, '_self');
           }
         },
-        error: (err) => {
-          console.log(err);
-        },
+        // error: (err) => {
+        //   console.log(err);
+        // },
       });
     }
   }

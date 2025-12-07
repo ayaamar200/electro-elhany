@@ -87,13 +87,13 @@ export class LoginComponent {
             }, 800);
           }
         },
-        error: (err) => {
-          const errorMsg = err?.error?.message || 'Something went wrong. Please try again.';
-          this.msgError.set(errorMsg);
+        // error: (err) => {
+        //   const errorMsg = err?.error?.message || 'Something went wrong. Please try again.';
+        //   this.msgError.set(errorMsg);
 
-          // auto-clear error message
-          setTimeout(() => this.msgError.set(''), 2500);
-        },
+        //   // auto-clear error message
+        //   setTimeout(() => this.msgError.set(''), 2500);
+        // },
       });
   }
 }

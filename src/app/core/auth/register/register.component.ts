@@ -109,13 +109,13 @@ export class RegisterComponent implements OnInit {
             }, 800);
           }
         },
-        error: (err) => {
-          const errorMsg =
-            err?.error?.errors?.[0]?.msg || 'Something went wrong. Please try again.';
-          this.msgError.set(errorMsg);
-          // auto-clear error message
-          setTimeout(() => this.msgError.set(''), 2500);
-        },
+        // error: (err) => {
+        //   const errorMsg =
+        //     err?.error?.errors?.[0]?.msg || 'Something went wrong. Please try again.';
+        //   this.msgError.set(errorMsg);
+        //   // auto-clear error message
+        //   setTimeout(() => this.msgError.set(''), 2500);
+        // },
       });
   }
 }

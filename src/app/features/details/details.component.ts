@@ -42,9 +42,9 @@ export class DetailsComponent implements OnInit {
         console.log(res.data);
         this.productDetails.set(res.data);
       },
-      error: (err) => {
-        console.log(err);
-      },
+      // error: (err) => {
+      //   console.log(err);
+      // },
     });
   }
 
@@ -56,9 +56,9 @@ export class DetailsComponent implements OnInit {
           this.toastService.show(res.message, 'success');
         }
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 }

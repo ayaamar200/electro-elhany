@@ -28,9 +28,9 @@ export class CartComponent implements OnInit {
         this.cartDetails.set(res.data);
         console.log('Cart data:', res.data);
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 
@@ -43,9 +43,9 @@ export class CartComponent implements OnInit {
         }
         this.cartDetails.set(res.data);
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 
@@ -58,9 +58,9 @@ export class CartComponent implements OnInit {
         }
         this.cartDetails.set(res.data);
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 
@@ -70,9 +70,9 @@ export class CartComponent implements OnInit {
         console.log('Item quantity updated:', res);
         this.cartDetails.set(res.data);
       },
-      error: (err) => {
-        console.error(err);
-      },
+      // error: (err) => {
+      //   console.error(err);
+      // },
     });
   }
 }

@@ -26,9 +26,9 @@ export class CategoriesComponent implements OnInit {
         console.log(res.data);
         this.categoryList.set(res.data);
       },
-      error: (error) => {
-        console.log(error);
-      },
+      // error: (error) => {
+      //   console.log(error);
+      // },
     });
   }
 }

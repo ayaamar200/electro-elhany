@@ -34,9 +34,9 @@ export class ProductsComponent implements OnInit {
         this.p = res.metaData.currentPage;
         this.total = res.results;
       },
-      error: (error) => {
-        console.log(error);
-      },
+      // error: (error) => {
+      //   console.log(error);
+      // },
     });
   }
 }
