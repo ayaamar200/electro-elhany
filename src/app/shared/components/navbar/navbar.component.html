@@ -67,14 +67,21 @@
             <i class="fa-regular fa-heart"></i>
           </a>
         </li>
-        <li>
+        <li class="relative">
           <a
             routerLink="/cart"
             routerLinkActive="text-red-600 shadow-md"
             title="Add to Cart"
             class="flex items-center justify-center w-full p-2 md:hover:bg-transparent md:border-0 hover:text-red-600 md:w-auto"
           >
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+            <!-- Counter Badge -->
+            <span
+              class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+            >
+              0
+            </span>
           </a>
         </li>
       </ul>

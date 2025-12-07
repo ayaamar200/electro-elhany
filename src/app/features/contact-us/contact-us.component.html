@@ -1,1 +1,24 @@
-<p>contact-us works!</p>
+<section class="max-w-6xl mx-auto px-4 py-12 text-center">
+  <h1 class="text-3xl font-bold mb-2">Let’s start working together</h1>
+  <h2 class="text-2xl font-bold mb-4 relative inline-block">
+    Get in touch with us!
+    <span class="block w-16 h-1 bg-red-600 mt-2 mx-auto"></span>
+  </h2>
+  <p class="text-red-600 mb-12">We are here to help you with any question you may have.</p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    @for (card of contactCards; track $index ) {
+    <div class="flex items-start gap-4 bg-white p-6 rounded-xl shadow-md">
+      <div
+        class="flex-shrink-0 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-xl"
+      >
+        <i class="fas fa-{{ card.icon }}"></i>
+      </div>
+      <div class="text-left">
+        <h3 class="font-medium mb-1">{{ card.title }}</h3>
+        <p class="text-gray-600 whitespace-pre-line">{{ card.details }}</p>
+      </div>
+    </div>
+    }
+  </div>
+</section>

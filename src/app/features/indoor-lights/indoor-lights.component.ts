@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Product } from '../../core/models/product.interface';
 import { ProductService } from '../../core/services/product/product.service';
 import { CardComponent } from '../../shared/components/card/card.component';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './indoor-lights.component.html',
   styleUrl: './indoor-lights.component.css',
 })
-export class IndoorLightsComponent {
+export class IndoorLightsComponent implements OnInit {
   private readonly productService = inject(ProductService);
 
   productList = signal<Product[]>([]);

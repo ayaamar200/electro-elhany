@@ -1,57 +1,63 @@
 <section class="w-full py-10 bg-gray-50">
   <div class="max-w-4xl mx-auto space-y-6">
-    @if(orders()){ @for (order of orders(); track order._id) {
+    <button routerLink="/all-products" class="btn text-sm font-medium underline">
+      Continue Shopping
+      <i class="fas fa-arrow-right"></i>
+    </button>
+
+    <!-- Loop Orders -->
+    @for (order of orders(); track order._id) {
     <div class="bg-white shadow rounded-lg p-6">
       <!-- Header -->
       <div class="border-b border-b-red-300 pb-3 mb-4">
         <h2 class="text-xl font-bold">Order #{{ order._id.slice(-6) }}</h2>
         <p class="text-gray-500 text-sm">
-          {{ order?.createdAt | date : 'medium' }}
+          {{ order.createdAt | date : 'medium' }}
         </p>
       </div>
 
       <!-- Total Bar -->
-      <div class="p-4 bg-gray-100 rounded-lg flex justify-between mb-4">
+      <div class="p-4 bg-red-100 rounded-lg flex justify-between mb-4">
         <span class="font-medium text-lg">Total</span>
-        <span class="text-lg font-semibold">{{ order?.totalOrderPrice | currency }} EGP</span>
+        <span class="text-lg font-semibold">{{ order.totalOrderPrice | currency : 'GBP' }} </span>
       </div>
 
       <!-- Products -->
       <div class="divide-y divide-red-300 mb-6">
-        @for (item of order?.orderItems; track item._id) {
+        @for (item of order.orderItems; track item._id) {
         <div class="p-4 flex items-center gap-4">
-          <img [src]="item?.product?.imageCover" class="w-16 h-16" [alt]="item?.product?.title" />
+          <img [src]="item.product.imageCover" class="w-16 h-16" alt="product" />
 
           <div class="flex-1">
             <h3 class="font-medium">
-              {{ item?.product?.title }}
+              {{ item.product.title }}
             </h3>
-            <p class="text-gray-500 text-sm">Qty: {{ item?.quantity }}</p>
+            <p class="text-gray-500 text-sm">Qty: {{ item.quantity }}</p>
           </div>
 
-          <span class="font-medium">{{ item?.price | currency }} </span>
+          <span class="font-medium">{{ item.price | currency : 'GBP' }} </span>
         </div>
         }
 
         <!-- Subtotal -->
         <div class="p-4 flex justify-between text-sm">
           <span class="text-gray-600">Subtotal</span>
-          <span>{{ order?.totalOrderPrice | currency }} </span>
+          <span>{{ order.totalOrderPrice | currency : 'GBP' }} </span>
         </div>
 
         <!-- Shipping -->
-        <div class="px-4 pb-4 flex justify-between text-sm">
+        <div class="p-4 flex justify-between text-sm">
           <span class="text-gray-600">Shipping</span>
-          <span>{{ order?.shippingPrice || 'Free' | currency }}</span>
+          <span>{{ order.shippingPrice || 'Free' }}</span>
         </div>
       </div>
 
       <!-- Status -->
-      @if (order?.orderStatus === 'pending') {
+      @if (order.orderStatus === 'pending') {
       <div class="p-4 rounded-lg bg-yellow-50 text-yellow-700">
         <p class="font-semibold">Status: Pending</p>
       </div>
-      } @else if (order?.orderStatus === 'completed') {
+      } @else if (order.orderStatus === 'completed') {
       <div class="p-4 rounded-lg bg-green-50 text-green-700">
         <p class="font-semibold">Status: Completed</p>
       </div>
@@ -62,36 +68,36 @@
         <!-- Contact Email -->
         <div>
           <h3 class="font-semibold text-lg mb-2">Contact Email</h3>
-          <p class="text-gray-700">{{ order?.contactEmail }}</p>
+          <p class="text-gray-700">{{ order.contactEmail }}</p>
         </div>
 
         <!-- Payment Method -->
         <div>
           <h3 class="font-semibold text-lg mb-2">Payment Method</h3>
-          <p class="capitalize text-gray-700">{{ order?.paymentMethod }}</p>
+          <p class="capitalize text-gray-700">{{ order.paymentMethod }}</p>
         </div>
 
         <!-- Shipping Address -->
         <div>
           <h3 class="font-semibold text-lg mb-2">Shipping Address</h3>
-          <p class="text-gray-700">{{ order?.shippingAddress?.fullName }}</p>
-          <p class="text-gray-700">{{ order?.shippingAddress?.streetAddress }}</p>
+          <p class="text-gray-700">{{ order.shippingAddress.fullName }}</p>
+          <p class="text-gray-700">{{ order.shippingAddress.streetAddress }}</p>
           <p class="text-gray-700">
-            {{ order?.shippingAddress?.city }},
-            {{ order?.shippingAddress?.country }}
+            {{ order.shippingAddress.city }},
+            {{ order.shippingAddress.country }}
           </p>
-          <p class="text-gray-700">{{ order?.shippingAddress?.phone }}</p>
+          <p class="text-gray-700">{{ order.shippingAddress.phone }}</p>
         </div>
 
         <!-- Delivery -->
         <div>
           <h3 class="font-semibold text-lg mb-2">Delivery</h3>
           <p class="capitalize text-gray-700">
-            @if (order?.isDelivered) { Delivered } @else { Not Delivered }
+            @if (order.isDelivered) { Delivered } @else { Not Delivered }
           </p>
         </div>
       </div>
     </div>
-    }}
+    }
   </div>
 </section>
