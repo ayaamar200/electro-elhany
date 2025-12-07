@@ -11,15 +11,11 @@ export class CartService {
   private readonly httpClient = inject(HttpClient);
 
   addProductToCart(productId: string, color?: string): Observable<any> {
-    return this.httpClient.post(
-      `${environment.baseUrl}/api/v1/cart`,
-      { productId, color },
-      { withCredentials: true }
-    );
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/cart`, { productId, color });
   }
 
   getCart(): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`, { withCredentials: true });
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`);
   }
 
   removeSpecificCartItem(id: string): Observable<any> {
@@ -29,28 +25,21 @@ export class CartService {
   }
 
   clearUserCart(): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`, { withCredentials: true });
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`);
   }
 
   updateCartItemQuantity(id: string, quantity: number): Observable<any> {
-    return this.httpClient.put(
-      `${environment.baseUrl}/api/v1/cart/${id}`,
-      { quantity },
-      { withCredentials: true }
-    );
+    return this.httpClient.put(`${environment.baseUrl}/api/v1/cart/${id}`, { quantity });
   }
 
   checkoutSession(cartId: string | null, data: object): Observable<any> {
     return this.httpClient.post(
       `${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}`,
-      data,
-      { withCredentials: true }
+      data
     );
   }
 
   createCashOrder(cartId: string | null, data: object): Observable<any> {
-    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/${cartId}`, data, {
-      withCredentials: true,
-    });
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/${cartId}`, data);
   }
 }

@@ -10,8 +10,6 @@ export class OrderService {
   private readonly httpClient = inject(HttpClient);
 
   getUserOrder(): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}/api/v1/orders`, {
-      withCredentials: true,
-    });
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/orders`);
   }
 }
