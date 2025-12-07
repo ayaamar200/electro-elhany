@@ -38,6 +38,8 @@ export class CartComponent implements OnInit {
     this.cartService.removeSpecificCartItem(itemId).subscribe({
       next: (res) => {
         console.log('Item removed:', res);
+        this.cartService.countNumber.set(res.numberOfCartItems);
+
         if (res.status === 'success') {
           this.toastService.show('Item removed from Cart', 'success');
         }

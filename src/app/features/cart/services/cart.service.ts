@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { isPlatformBrowser } from '@angular/common';
@@ -9,6 +9,8 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class CartService {
   private readonly httpClient = inject(HttpClient);
+
+  countNumber: WritableSignal<number> = signal(0);
 
   addProductToCart(productId: string, color?: string): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/api/v1/cart`, { productId, color });
