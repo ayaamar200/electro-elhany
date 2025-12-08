@@ -23,7 +23,7 @@ export class WiringDevicesComponent implements OnInit {
   searchTerm: string = '';
 
   ngOnInit(): void {
-    this.getAllProductsDataOnCategory('68b026851922439837c4ca7e');
+    this.getAllProductsDataOnCategory('68b0269f1922439837c4ca82');
   }
 
   getAllProductsDataOnCategory(productId: string): void {
