@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://shop-api-tau.vercel.app',
+  baseUrl: 'https://www.electroelhany.store',
 };
