@@ -1,220 +1,229 @@
-<section>
-  <div class="container">
+<section class="w-full">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12">
     <div class="main-title text-center">
-      <h1 class="text-3xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Product Details</h1>
+      <h1
+        class="text-2xl sm:text-3xl text-center text-red-600 p-3 sm:p-4 bg-gray-50 mb-6 shadow rounded-md"
+      >
+        Product Details
+      </h1>
     </div>
 
     @if (productDetails()) {
-    <div class="py-10 px-20">
-      <div class="details-body grid md:grid-cols-12 gap-6 items-start">
-        <!-- Product Images -->
-        <div class="md:col-span-5">
-          <swiper-container
-            class="mySwiper"
-            thumbs-swiper=".mySwiper2"
-            loop="true"
-            space-between="10"
-            navigation="true"
-            zoom="true"
-          >
-            <swiper-slide>
-              <div class="swiper-zoom-container">
+      <div class="py-6 sm:py-10">
+        <div
+          class="details-body grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+        >
+          <!-- Product Images -->
+          <div class="md:col-span-5 w-full">
+            <!-- Main Slider -->
+            <swiper-container
+              class="mySwiper w-full rounded-md shadow bg-white overflow-hidden"
+              thumbs-swiper=".mySwiper2"
+              loop="true"
+              space-between="10"
+              navigation="true"
+              zoom="true"
+            >
+              <swiper-slide>
+                <div class="swiper-zoom-container w-full aspect-square sm:aspect-[4/3] lg:aspect-[5/4]">
+                  <img
+                    class="w-full h-full object-contain"
+                    [src]="productDetails().imageCover"
+                    [alt]="productDetails().title"
+                    loading="lazy"
+                  />
+                </div>
+              </swiper-slide>
+
+              @for (img of productDetails().images; track $index) {
+                <swiper-slide>
+                  <div class="swiper-zoom-container w-full aspect-square sm:aspect-[4/3] lg:aspect-[5/4]">
+                    <img
+                      class="w-full h-full object-contain"
+                      [src]="img"
+                      [alt]="productDetails().title"
+                      loading="lazy"
+                    />
+                  </div>
+                </swiper-slide>
+              }
+            </swiper-container>
+
+            <!-- Thumbs Slider -->
+            <swiper-container
+              class="mySwiper2 mt-3 w-full"
+              loop="true"
+              space-between="10"
+              slides-per-view="4"
+              free-mode="true"
+              watch-slides-progress="true"
+              breakpoints='{ "0": { "slidesPerView": 4 }, "480": { "slidesPerView": 5 }, "768": { "slidesPerView": 4 } }'
+            >
+              <swiper-slide class="cursor-pointer">
                 <img
-                  class="w-full object-contain rounded-md shadow"
+                  class="w-full h-16 sm:h-20 object-contain rounded-md border border-gray-200 bg-white"
                   [src]="productDetails().imageCover"
                   [alt]="productDetails().title"
+                  loading="lazy"
                 />
-              </div>
-            </swiper-slide>
-            @for(img of productDetails().images ; track $index) {
+              </swiper-slide>
 
-            <swiper-slide>
-              <div class="swiper-zoom-container">
-                <img
-                  [src]="img"
-                  [alt]="productDetails().title"
-                  class="w-full object-contain rounded-md"
-                />
-              </div>
-            </swiper-slide>
-            }
-          </swiper-container>
+              @for (img of productDetails().images; track $index) {
+                <swiper-slide class="cursor-pointer">
+                  <img
+                    class="w-full h-16 sm:h-20 object-contain rounded-md border border-gray-200 bg-white"
+                    [src]="img"
+                    [alt]="productDetails().title"
+                    loading="lazy"
+                  />
+                </swiper-slide>
+              }
+            </swiper-container>
+          </div>
 
-          <swiper-container
-            class="mySwiper2 mt-2"
-            loop="true"
-            space-between="10"
-            slides-per-view="4"
-            free-mode="true"
-            watch-slides-progress="true"
+          <!-- Products Details -->
+          <div
+            class="md:col-span-7 w-full flex flex-col justify-center border border-gray-200 p-4 sm:p-6 rounded-md shadow-sm relative bg-white"
           >
-            <swiper-slide>
-              <img
-                class="w-full object-contain rounded-md"
-                [src]="productDetails().imageCover"
-                [alt]="productDetails().title"
-              />
-            </swiper-slide>
-            @for(img of productDetails().images ; track $index) {
+            <button
+              role="button"
+              title="Add To Wishlist"
+              class="text-xl absolute top-3 end-3 font-light text-gray-600 hover:text-red-700"
+            >
+              <i class="fa-regular fa-heart"></i>
+            </button>
 
-            <swiper-slide>
-              <img
-                [src]="img"
-                [alt]="productDetails().title"
-                class="w-full object-contain rounded-md"
-              />
-            </swiper-slide>
-            }
-          </swiper-container>
-        </div>
+            <h1 class="text-xl sm:text-2xl font-medium leading-7 sm:leading-9 pt-2 sm:pt-4">
+              {{ productDetails().title }}
+            </h1>
 
-        <!-- Products Details -->
-        <div
-          class="md:col-span-7 flex flex-col justify-center border border-gray-200 p-6 rounded-md shadow-sm relative"
-        >
-          <button
-            role="button"
-            title="Add To Wishlist"
-            class="text-xl absolute top-2 end-2 font-light text-gray-600 hover:text-red-700"
-          >
-            <i class="fa-regular fa-heart"></i>
-          </button>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mt-3">
+              <div class="text-sm">
+                <span>by</span>
+                <span class="text-red-700 font-bold ms-1">
+                  {{ productDetails()?.brand?.name }}
+                </span>
+              </div>
 
-          <h1 class="text-2xl font-medium leading-9 py-4">
-            {{ productDetails().title }}
-          </h1>
-
-          <div class="flex justify-between items-center my-2">
-            <div>
-              <span class="text-sm">by</span>
-              <span class="text-red-700 font-bold text-sm">
-                {{ productDetails()?.brand?.name }}</span
-              >
-            </div>
-
-            <!-- Ratings -->
-            <div class="py-2">
-              <span class="text-yellow-500">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star-half-stroke"></i>
-                <i class="fa-regular fa-star"></i>
-              </span>
-              <span class="text-sm">
-                {{ productDetails().ratingsAverage }}
-              </span>
-              <span>
-                |
+              <!-- Ratings -->
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-yellow-500">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star-half-stroke"></i>
+                  <i class="fa-regular fa-star"></i>
+                </span>
+                <span class="text-sm">{{ productDetails().ratingsAverage }}</span>
+                <span class="text-gray-400">|</span>
                 <a
-                  class="text-gray-500 text-sm font-medium hover:underline hover:text-red-700 cursor-pointer transition-all duration-500"
+                  class="text-gray-500 text-sm font-medium hover:underline hover:text-red-700 cursor-pointer transition-all duration-300"
                 >
                   {{ productDetails().ratingsQuantity }} <span>reviews</span>
                 </a>
-              </span>
+              </div>
             </div>
-          </div>
 
-          <!-- Product Price -->
-          <div class="flex justify-between items-center font-bold mt-3">
-            <p>{{ productDetails().price | currency : 'GBP' }}</p>
-            <p class="text-sm text-red-700">
-              {{ productDetails().quantity }}
-              <span> Items</span>
+            <!-- Product Price -->
+            <div class="flex items-center justify-between font-bold mt-4">
+              <p class="text-lg sm:text-xl">
+                {{ productDetails().price | currency: 'GBP' }}
+              </p>
+              <p class="text-sm text-red-700">
+                {{ productDetails().quantity }} <span class="text-gray-700 font-normal">Items</span>
+              </p>
+            </div>
+
+            <!-- Product Description -->
+            <p class="py-3 mt-2 text-sm sm:text-base font-light text-gray-700 leading-6">
+              {{ productDetails().description }}.
             </p>
-          </div>
 
-          <!-- Product Description -->
-          <p class="py-3 mt-2 font-light text-gray-700">{{ productDetails().description }}.</p>
-
-          <!-- Quantity -->
-
-          <!-- <div class="border border-gray-300 rounded-md py-2 space-x-4 text-sm font-medium">
-              <button class="cursor-pointer border-e border-gray-300 px-3">-</button>
-              <span>1</span>
-              <button class="cursor-pointer border-s border-gray-300 px-3">+</button>
-            </div> -->
-
-          <div class="flex justify-between items-center my-4">
-            <button
-              (click)="addToCart(productDetails()._id)"
-              title="Add To Cart"
-              role="button"
-              class="btn"
-            >
-              Add To Cart
-              <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-            <button routerLink="/all-products" class="btn">
-              Continue Shopping
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <div class="text-sm font-light mt-4">
-            <p class="font-medium">
-              Categories:<span class="text-gray-700">
-                {{ productDetails()?.category?.name }},
-                {{ productDetails()?.subcategories?.[0]?.name }}</span
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2">
+              <button
+                (click)="addToCart(productDetails()._id)"
+                title="Add To Cart"
+                role="button"
+                class="btn w-full sm:w-auto justify-center"
               >
-            </p>
+                Add To Cart
+                <i class="fa-solid fa-cart-shopping ms-2"></i>
+              </button>
 
-            <div class="flex py-2">
-              <p class="font-medium">Follow:</p>
-              <!-- Facebook -->
-              <a href="#" class="text-gray-500 hover:text-blue-600 ms-2">
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 8 19"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="sr-only">Facebook page</span>
-              </a>
+              <button routerLink="/all-products" class="btn w-full sm:w-auto justify-center">
+                Continue Shopping
+                <i class="fas fa-arrow-right ms-2"></i>
+              </button>
+            </div>
 
-              <!-- Instagram -->
-              <a href="#" class="text-gray-500 hover:text-pink-600 ms-2">
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"
-                  />
-                </svg>
-                <span class="sr-only">Instagram page</span>
-              </a>
+            <!-- Meta -->
+            <div class="text-sm font-light mt-5 border-t pt-4">
+              <p class="font-medium">
+                Categories:
+                <span class="text-gray-700 font-normal">
+                  {{ productDetails()?.category?.name }},
+                  {{ productDetails()?.subcategories?.[0]?.name }}
+                </span>
+              </p>
 
-              <!-- LinkedIn -->
-              <a href="#" class="text-gray-500 hover:text-blue-500 ms-2">
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.1c.53-1 1.82-2.2 3.75-2.2C20.4 8 21 10.6 21 14.1V24h-4v-9c0-2.2-.04-5-3-5-3 0-3.46 2.3-3.46 4.7V24h-4V8z"
-                  />
-                </svg>
-                <span class="sr-only">LinkedIn page</span>
-              </a>
+              <div class="flex items-center flex-wrap gap-2 py-3">
+                <p class="font-medium">Follow:</p>
+
+                <!-- Facebook -->
+                <a href="#" class="text-gray-500 hover:text-blue-600">
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 8 19"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="sr-only">Facebook page</span>
+                </a>
+
+                <!-- Instagram -->
+                <a href="#" class="text-gray-500 hover:text-pink-600">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"
+                    />
+                  </svg>
+                  <span class="sr-only">Instagram page</span>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="#" class="text-gray-500 hover:text-blue-500">
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.1c.53-1 1.82-2.2 3.75-2.2C20.4 8 21 10.6 21 14.1V24h-4v-9c0-2.2-.04-5-3-5-3 0-3.46 2.3-3.46 4.7V24h-4V8z"
+                    />
+                  </svg>
+                  <span class="sr-only">LinkedIn page</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     }
   </div>
 </section>

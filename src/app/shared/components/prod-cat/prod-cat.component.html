@@ -1,0 +1,52 @@
+<section class="py-6 sm:py-8">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Title -->
+    <div class="main-title text-center">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-900 font-bold">
+        {{ title() }}
+      </h2>
+    </div>
+
+    <!-- Search -->
+    @if (showSearch()) {
+      <div class="relative mt-4 sm:mt-6">
+        <input
+          type="search"
+          class="main-input w-full bg-gray-100 pe-10"
+          [value]="searchTerm()"
+          (input)="onSearchInput($event)"
+          [placeholder]="searchPlaceholder()"
+        />
+      </div>
+    }
+
+    <!-- Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 mt-5">
+      @for (
+        product of products()
+          | paginate
+            : {
+                id: paginationId(),
+                itemsPerPage: itemsPerPage(),
+                currentPage: currentPage(),
+                totalItems: total(),
+              }
+          | search: searchTerm();
+        track product._id
+      ) {
+        <app-card class="w-full" [product]="product" />
+      }
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center mt-6">
+      <pagination-controls
+        class="my-pagination"
+        [id]="paginationId()"
+        (pageChange)="onPageChange($event)"
+        previousLabel="Prev"
+        nextLabel="Next"
+      ></pagination-controls>
+    </div>
+  </div>
+</section>

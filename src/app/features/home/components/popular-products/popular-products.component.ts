@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../../../core/services/product/product.service';
 import { Product } from '../../../../core/models/product.interface';
 import { CardComponent } from '../../../../shared/components/card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-popular-products',
-  imports: [CardComponent],
+  imports: [CardComponent,RouterLink],
   templateUrl: './popular-products.component.html',
   styleUrl: './popular-products.component.css',
 })

@@ -1,42 +1,53 @@
 import { Component, inject, signal } from '@angular/core';
 import { ProductService } from '../../core/services/product/product.service';
 import { Product } from '../../core/models/product.interface';
-import { CardComponent } from '../../shared/components/card/card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SearchPipe } from '../../shared/pipes/search-pipe';
-import { FormsModule } from '@angular/forms';
+import { ProdCatComponent } from '../../shared/components/prod-cat/prod-cat.component';
 
 @Component({
   selector: 'app-outdoor-lights',
-  imports: [CardComponent, NgxPaginationModule, SearchPipe, FormsModule],
+  imports: [NgxPaginationModule, ProdCatComponent],
   templateUrl: './outdoor-lights.component.html',
   styleUrl: './outdoor-lights.component.css',
 })
 export class OutdoorLightsComponent {
   private readonly productService = inject(ProductService);
 
+  categoryId = signal<string>('68b026941922439837c4ca80');
+
   productList = signal<Product[]>([]);
   pageSize = signal<number>(15);
   p = signal<number>(1);
-  total = signal<number>(100);
-  searchTerm: string = '';
+  total = signal<number>(0);
 
   ngOnInit(): void {
-    this.getAllProductsDataOnCategory('68b026941922439837c4ca80');
+    this.loadProducts();
   }
 
-  getAllProductsDataOnCategory(productId: string): void {
-    this.productService.getAllProductsOnCategory(productId).subscribe({
+  loadProducts(): void {
+    const catId = this.categoryId();
+    const page = this.p();
+
+    this.productService.getAllProductsOnCategory(catId, page).subscribe({
       next: (res) => {
-        console.log(res);
         this.productList.set(res.data);
         this.total.set(res.results);
         this.pageSize.set(res.metaData.limit);
         this.p.set(res.metaData.currentPage);
       },
-      // error: (error) => {
-      //   console.log(error);
-      // },
     });
+  }
+
+  searchTerm = signal('');
+
+  onSearchChange(term: string) {
+    this.searchTerm.set(term);
+    this.p.set(1);
+    this.loadProducts();
+  }
+
+  onPageChange(page: number) {
+    this.p.set(page);
+    this.loadProducts();
   }
 }

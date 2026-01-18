@@ -1,20 +1,23 @@
 <section class="my-5">
-  <div class="container w-[65%]">
+  <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     <div class="main-title text-center capitalize py-4">
-      <h1 class="text-2xl">Checkout</h1>
-      <p class="text-red-400">Complete your purchase</p>
+      <h1 class="text-xl sm:text-2xl lg:text-3xl font-semibold">Checkout</h1>
+      <p class="text-sm sm:text-base text-red-400 mt-1">Complete your purchase</p>
     </div>
-    <div class="grid sm:grid-cols-1">
-      <div class="mt-5 border border-gray-200 p-8 shadow-md rounded-md">
+
+    <div class="grid grid-cols-1">
+      <div class="mt-5 border border-gray-200 p-4 sm:p-6 lg:p-8 shadow-md rounded-md bg-white">
         <form [formGroup]="checkoutForm" class="main-form">
+          <!-- Contact -->
           <div>
-            <div class="flex justify-between items-center">
-              <h2 class="text-red-500 py-1">Contact Information</h2>
-              <p class="py-1 text-center">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+              <h2 class="text-red-500 py-1 font-medium">Contact Information</h2>
+              <p class="py-1 text-sm sm:text-base">
                 Already have an account?
                 <a routerLink="/login" class="text-red-600 underline cursor-pointer">Login</a>
               </p>
             </div>
+
             <app-input
               [element]="'input'"
               [control]="checkoutForm.get('contactEmail')"
@@ -27,8 +30,10 @@
             </app-input>
           </div>
 
-          <div>
-            <h2 class="text-red-500 py-2">Shipping Address</h2>
+          <!-- Shipping -->
+          <div class="mt-4">
+            <h2 class="text-red-500 py-2 font-medium">Shipping Address</h2>
+
             <app-input
               [element]="'input'"
               [control]="checkoutForm.get('shippingAddress.fullName')"
@@ -37,14 +42,15 @@
               [placeholder]="'Enter your Full Name'"
               [label]="'Full Name'"
             ></app-input>
+
             <app-input
               [element]="'textarea'"
               [control]="checkoutForm.get('shippingAddress.streetAddress')"
               [inputId]="'address'"
               [placeholder]="'Enter your Address Details...'"
               [label]="'Delivery Address'"
-            >
-            </app-input>
+            ></app-input>
+
             <app-input
               [element]="'input'"
               [control]="checkoutForm.get('shippingAddress.phone')"
@@ -56,23 +62,29 @@
               Invalid phone number format. Accepts local or international (e.g., +201001234567 or
               01012345678)
             </app-input>
-            <app-input
-              [element]="'input'"
-              [control]="checkoutForm.get('shippingAddress.country')"
-              [inputId]="'country'"
-              [inputType]="'text'"
-              [placeholder]="'Country...'"
-              [label]="'Country'"
-            ></app-input>
-            <app-input
-              [element]="'input'"
-              [control]="checkoutForm.get('shippingAddress.city')"
-              [inputId]="'city'"
-              [inputType]="'text'"
-              [placeholder]="'City...'"
-              [label]="'City'"
-            ></app-input>
-            <div class="flex justify-between items-center space-x-2">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <app-input
+                [element]="'input'"
+                [control]="checkoutForm.get('shippingAddress.country')"
+                [inputId]="'country'"
+                [inputType]="'text'"
+                [placeholder]="'Country...'"
+                [label]="'Country'"
+              ></app-input>
+
+              <app-input
+                [element]="'input'"
+                [control]="checkoutForm.get('shippingAddress.city')"
+                [inputId]="'city'"
+                [inputType]="'text'"
+                [placeholder]="'City...'"
+                [label]="'City'"
+              ></app-input>
+            </div>
+
+            <!-- 3 fields become grid instead of flex (better on mobile) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-1">
               <app-input
                 [element]="'input'"
                 [control]="checkoutForm.get('shippingAddress.governorate')"
@@ -81,6 +93,7 @@
                 [placeholder]="'Governorate...'"
                 [label]="'Governorate'"
               ></app-input>
+
               <app-input
                 [element]="'input'"
                 [control]="checkoutForm.get('shippingAddress.building')"
@@ -89,6 +102,7 @@
                 [placeholder]="'Optional'"
                 [label]="'Building Info'"
               ></app-input>
+
               <app-input
                 [element]="'input'"
                 [control]="checkoutForm.get('shippingAddress.postalCode')"
@@ -108,23 +122,11 @@
             ></app-input>
           </div>
 
-          <div>
-            <h2 class="text-red-500 py-1">Payment Method</h2>
+          <!-- Payment (COD only) -->
+          <div class="mt-4">
+            <h2 class="text-red-500 py-1 font-medium">Payment Method</h2>
 
-            <div class="space-y-3">
-              <!-- CARD -->
-              <label
-                class="flex items-center p-4 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-50"
-                [class.border-red-500]="checkoutForm.get('paymentMethod')?.value === 'card'"
-              >
-                <input type="radio" class="mr-3" formControlName="paymentMethod" value="card" />
-                <div class="flex flex-col">
-                  <span class="font-medium text-gray-700">Credit / Debit Card</span>
-                  <span class="text-xs text-gray-500">Visa, MasterCard, AMEX</span>
-                </div>
-              </label>
-
-              <!-- CASH -->
+            <div class="space-y-3 mt-2">
               <label
                 class="flex items-center p-4 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-50"
                 [class.border-red-500]="checkoutForm.get('paymentMethod')?.value === 'cod'"
@@ -136,18 +138,16 @@
                 </div>
               </label>
             </div>
-            <div class="flex justify-end my-3">
-              <button type="submit" class="btn block uppercase" (click)="submit()">
+
+            <div class="flex justify-end mt-4">
+              <button type="submit" class="btn w-full sm:w-auto uppercase" (click)="submit()">
                 place order
               </button>
             </div>
           </div>
         </form>
       </div>
-
-      <!-- <div class="mt-5 p-8">
-        <h2 class="text-xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Your Order</h2>
-      </div> -->
     </div>
   </div>
 </section>
+

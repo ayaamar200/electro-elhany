@@ -48,10 +48,11 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  addToCart(productId: string): void {
+    addToCart(productId: string): void {
     this.cartService.addProductToCart(productId).subscribe({
       next: (res) => {
         console.log('Product added to cart:', res);
+        this.cartService.countNumber.set(res.numberOfCartItems);
         if (res.status === 'success') {
           this.toastService.show(res.message, 'success');
         }

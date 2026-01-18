@@ -1,110 +1,164 @@
-@if(cartDetails()) {
-<section class="p-4 my-5">
-  <h1 class="text-3xl text-center text-red-600 p-4 bg-gray-50 mb-6 shadow">Your Cart</h1>
-  <!-- Cart Data -->
-  <div class="container grid sm:grid-cols-12 gap-4 items-start">
-    <div class="col-span-8 bg-white p-4">
-      <div class="flex items-center justify-between p-4">
-        <div class="flex items-center space-x-3">
-          <h1 class="text-2xl font-medium">Cart</h1>
-          <span class="text-red-500 font-semibold text-sm">
-            {{ cartDetails()?.cartItems?.length }} items</span
-          >
+@if (cartDetails()) {
+<section class="py-8 sm:py-10 my-5">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h1
+      class="text-2xl sm:text-3xl text-center text-red-600 p-3 sm:p-4 bg-gray-50 mb-6 shadow rounded-md"
+    >
+      Your Cart
+    </h1>
+
+    <!-- Cart Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
+      <!-- Cart Items -->
+      <div class="lg:col-span-8 bg-white p-3 sm:p-4 rounded-md shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-2 sm:p-4">
+          <div class="flex items-center gap-3">
+            <h1 class="text-xl sm:text-2xl font-medium">Cart</h1>
+            <span class="text-red-500 font-semibold text-sm">
+              {{ cartDetails()?.cartItems?.length }} items
+            </span>
+          </div>
+
+          <button (click)="clearCart()" class="btn w-full sm:w-auto">
+            Clear cart
+          </button>
         </div>
 
-        <button (click)="clearCart()" class="btn">clear cart</button>
-      </div>
-
-      @for (item of cartDetails()?.cartItems ?? []; track item.product._id) {
-      <div class="bg-gray-100 rounded-md shadow-md my-4 grid sm:grid-cols-12 relative">
-        <div
-          class="col-span-2 cursor-pointer"
-          [routerLink]="['/details', item.product.slug, item.product._id]"
-        >
-          <img [src]="item.product.imageCover" class="w-full" [alt]="item.product.title" />
-        </div>
-
-        <div class="col-span-10 flex justify-between items-center p-4">
-          <div class="flex flex-col items-start">
-            <h3 class="font-medium mb-2">{{ item.product.title }}</h3>
-
-            <div
-              class="bg-red-200 border border-red-300 rounded-md flex items-center space-x-10 py-1 px-2"
-            >
-              <button
-                (click)="updateItemQuantity(item._id, item.quantity - 1)"
-                class="cursor-pointer text-[10px]"
+        @for (item of cartDetails()?.cartItems ?? []; track item.product._id) {
+          <div class="bg-gray-100 rounded-md shadow-sm my-4 overflow-hidden">
+            <div class="relative grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 p-3 sm:p-4">
+              <!-- Image -->
+              <div
+                class="sm:col-span-3 md:col-span-2 cursor-pointer"
+                [routerLink]="['/details', item.product.slug, item.product._id]"
               >
-                <i class="fas fa-minus"></i>
-              </button>
-              <span class="font-medium"> {{ item.quantity }} </span>
+                <div class="w-full h-28 sm:h-24 md:h-24 lg:h-24 bg-white rounded-md p-2">
+                  <img
+                    [src]="item.product.imageCover"
+                    class="w-full h-full object-contain"
+                    [alt]="item.product.title"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="sm:col-span-9 md:col-span-10 flex flex-col gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                  <h3 class="font-medium text-sm sm:text-base leading-6 line-clamp-2">
+                    {{ item.product.title }}
+                  </h3>
+
+                  <span class="font-semibold text-red-500 sm:text-base">
+                    {{ item.price * item.quantity | currency : 'GBP' }}
+                  </span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <!-- Quantity -->
+                  <div
+                    class="bg-red-100 border border-red-200 rounded-md flex items-center justify-between w-full sm:w-[220px] px-3 py-2"
+                  >
+                    <button
+                      (click)="updateItemQuantity(item._id, item.quantity - 1)"
+                      class="cursor-pointer text-xs sm:text-sm px-2"
+                      aria-label="Decrease quantity"
+                    >
+                      <i class="fas fa-minus"></i>
+                    </button>
+
+                    <span class="font-medium text-sm sm:text-base">
+                      {{ item.quantity }}
+                    </span>
+
+                    <button
+                      (click)="updateItemQuantity(item._id, item.quantity + 1)"
+                      class="cursor-pointer text-xs sm:text-sm px-2"
+                      aria-label="Increase quantity"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+
+                  <!-- Remove (mobile friendly button position) -->
+                  <button
+                    (click)="removeItem(item._id)"
+                    role="button"
+                    title="Remove"
+                    class="inline-flex items-center justify-center self-start sm:self-auto text-gray-600 hover:text-red-500 transition-colors duration-300"
+                  >
+                    <i class="fa-regular fa-trash-can text-base"></i>
+                    <span class="ms-2 text-sm sm:hidden">Remove</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Remove icon for larger screens (top-right) -->
               <button
-                (click)="updateItemQuantity(item._id, item.quantity + 1)"
-                class="cursor-pointer text-[10px]"
+                (click)="removeItem(item._id)"
+                role="button"
+                title="Remove"
+                class="hidden sm:inline-flex absolute top-3 end-3 text-gray-600 hover:text-red-500 transition-colors duration-300"
               >
-                <i class="fas fa-plus"></i>
+                <i class="fa-regular fa-trash-can text-sm font-medium"></i>
               </button>
             </div>
           </div>
-          <span class="font-semibold text-red-500 p-2"
-            >{{ item.price * item.quantity | currency : 'GBP' }}
-          </span>
+        }
+
+        @if (cartDetails()?.cartItems?.length === 0) {
+          <div class="bg-white shadow-sm h-[120px] flex justify-center items-center rounded-md">
+            <h2 class="font-medium">Your cart is empty</h2>
+          </div>
+        }
+      </div>
+
+      <!-- Order Summary -->
+      <div class="lg:col-span-4 bg-white p-3 sm:p-4 rounded-md shadow-sm">
+        <div class="border-b border-red-200 pb-4">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+            <h2 class="text-lg sm:text-xl font-medium">Order Summary</h2>
+
+            <a
+              routerLink="/all-products"
+              class="text-red-600 text-sm font-medium underline inline-flex items-center gap-2"
+            >
+              Continue Shopping
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="flex justify-between items-center mt-4">
+            <h3 class="text-sm sm:text-base">SubTotal</h3>
+            <h4 class="text-sm sm:text-base font-medium">
+              {{ cartDetails()?.totalCartPrice | currency : 'GBP' }}
+            </h4>
+          </div>
+
+          <div class="flex justify-between items-center mt-3">
+            <h5 class="text-sm">Tax</h5>
+            <span class="text-sm">{{ tax }}%</span>
+          </div>
+
+          <div class="flex justify-between items-center mt-3">
+            <h5 class="text-sm">Shipping</h5>
+            <span class="text-red-500 font-medium text-sm">
+              {{ shipping }}
+            </span>
+          </div>
         </div>
+
         <button
-          (click)="removeItem(item._id)"
+          [routerLink]="['/checkout', cartDetails()?._id]"
           role="button"
-          title="Remove"
-          class="absolute top-2 end-2 hover:text-red-500 transition-colors duration-300 cursor-pointer"
+          class="btn mt-4 w-full uppercase inline-flex items-center justify-center gap-2"
         >
-          <i class="fa-regular fa-trash-can text-sm font-medium"></i>
+          Go to checkout
+          <i class="fas fa-arrow-right"></i>
         </button>
       </div>
-      } @if(cartDetails()?.cartItems?.length === 0) {
-      <div class="bg-white shadow h-[100px] flex justify-center items-center">
-        <h2 class="font-medium">your cart is empty</h2>
-      </div>
-      }
-    </div>
-
-    <!-- Payment -->
-
-    <div class="col-span-4 bg-white p-4 rounded-md shadow">
-      <div class="border-b-2 border-red-300">
-        <div class="flex justify-between items-center">
-          <h2 class="md:text-xl font-medium text-center">Order Summary</h2>
-          <a routerLink="/all-products" class="text-red-600 text-sm font-medium underline">
-            Continue Shopping
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-        <div class="flex justify-between items-center my-4">
-          <h3>SubTotal</h3>
-          <h4>{{ cartDetails()?.totalCartPrice | currency : 'GBP' }}</h4>
-        </div>
-        <div class="flex justify-between items-center my-4">
-          <h5 class="text-sm">Tax</h5>
-          <span>{{ tax }}%</span>
-        </div>
-        <div class="flex justify-between items-center my-4">
-          <h5 class="text-sm">Shipping</h5>
-          <span class="text-red-500 font-medium"> {{ shipping }} </span>
-        </div>
-      </div>
-
-      <!-- <div class="flex justify-between items-center my-4">
-        <h3>Total Price</h3>
-        <h4>{{ cartDetails()?.totalCartPrice | currency : 'GBP' }}</h4>
-      </div> -->
-
-      <button
-        [routerLink]="['/checkout', cartDetails()?._id]"
-        role="button"
-        class="btn my-2 w-full uppercase"
-      >
-        go to checkout
-        <i class="fas fa-arrow-right"></i>
-      </button>
     </div>
   </div>
 </section>
 }
+
